@@ -1,0 +1,3 @@
+Sempre que realizar a codificação ou alguma alteração suba no seu diretório para deixar atualizado.
+
+Este diretório e para integrar toda a aplicação feita em HTML, CSS, a prte de backend (Python, C#, Java, PHP) e banco de dados.
