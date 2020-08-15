@@ -32,11 +32,11 @@ Desenvolvimento de site de compras, visando assegurar um ambiente seguro e intui
 ---
 ## :wave: 🛠 Como utilizar o projeto
 ```bash
-Criar um "Quick Start", de como utilizar o projeto. Importar as dependencias necessárias e rodar no ambiente de desenvolvimento. 
+Criar um "Quick Start", de como utilizar o projeto.
+Importar as dependencias necessárias e rodar no ambiente de desenvolvimento. 
 ```
-```bash
-EX: Documentation of the main points and stage of building the application [Click Here!](https://aws.amazon.com/pt/quickstart/?quickstart-all.sort-by=item.additionalFields.updateDate&quickstart-all.sort-order=desc)!
-```
+EX: Documentation of the main points and stage of building the application. [Click Here!](https://aws.amazon.com/pt/quickstart/?quickstart-all.sort-by=item.additionalFields.updateDate&quickstart-all.sort-order=desc)!
+
 ---
 ## :black_nib: Integrantes
 ```bash
