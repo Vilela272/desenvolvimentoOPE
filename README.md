@@ -50,7 +50,7 @@ $ Nome - Guilherme Nunes da Silva
 # E-mail: guilherme.nunes@aluno.faculdadeimpacta.com.br  
 
 $ Nome - Guilherme Vilela Moreira  
-E-mail: guilherme.moreira@aluno.faculdadeimpacta.com.br  
+# E-mail: guilherme.moreira@aluno.faculdadeimpacta.com.br  
 
 $ Nome: Larissa de Melo Bulgurlu  
 # E-mail: larissa.bulgurlu@aluno.faculdadeimpacta.com.br    
