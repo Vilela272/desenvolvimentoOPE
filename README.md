@@ -10,7 +10,6 @@
 
 Desenvolvimento de site de compras, visando assegurar um ambiente seguro e intuitivo para o cliente, bem como promover um sistema de gestão de produtos que permita que o proprietário tenha uma visão geral do negócio.
 ---
----
 ## :computer: Pilha de desenvolvimento
 
 #### :japanese_ogre: Back-end
@@ -32,15 +31,15 @@ Desenvolvimento de site de compras, visando assegurar um ambiente seguro e intui
 ```
 ---
 ## :wave: 🛠 Como utilizar o projeto
-```js
+```bash
 Criar um "Quick Start", de como utilizar o projeto. Importar as dependencias necessárias e rodar no ambiente de desenvolvimento. 
 ```
-```js
+```bash
 EX: Documentation of the main points and stage of building the application [Click Here!](https://aws.amazon.com/pt/quickstart/?quickstart-all.sort-by=item.additionalFields.updateDate&quickstart-all.sort-order=desc)!
 ```
 ---
 ## :black_nib: Integrantes
-```js
+```bash
 $ Nome - Ana Carolina Felicio   
 # E-mail: ana.felicio@aluno.faculdadeimpacta.com.br  
 
