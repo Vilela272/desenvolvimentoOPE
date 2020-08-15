@@ -7,8 +7,9 @@
 </h1>
 
 ### :scroll: Sobre
-
-Desenvolvimento de site de compras, visando assegurar um ambiente seguro e intuitivo para o cliente, bem como promover um sistema de gestão de produtos que permita que o proprietário tenha uma visão geral do negócio.
+<p align="justify">
+     Desenvolvimento de site de compras, visando assegurar um ambiente seguro e intuitivo para o cliente, bem como promover um sistema de gestão de produtos que permita que o proprietário tenha uma visão geral do negócio.
+</p>
 ---
 ## :computer: Pilha de desenvolvimento
 
@@ -20,7 +21,6 @@ Desenvolvimento de site de compras, visando assegurar um ambiente seguro e intui
 - Javascript
 - SQL Server/ MySQL
 ```
----
 ### :nail_care: Front-End
 ```js
 - TypeScript
