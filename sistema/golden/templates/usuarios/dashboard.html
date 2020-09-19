@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_busca.html' %}
+
+{% include 'partials/_menu.html' %}
+
+        <!-- Preloader -->
+        <div id="preloader" >
+            <i class="circle-preloader" ></i>
+            <img src="{% static 'img/core-img/spinner.png' %}" alt="">
+        </div>
+
+        <br><br>
+        <!-- ##### Contact Form Area Start ##### -->
+        <div class="contact-area section-padding-0-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading">
+                            <h2>Seja bem-vindo as suas configurações, {{ user.username }}</h2>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="contact-form-area">
+                            <form action="{% url 'cadastro' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="nome"><b>Nome <i class="fa fa-user-plus" aria-hidden="true"></i></b></label>
+                                        <input type="text" class="form-control" name="nome" placeholder="Ex.:Fulano" required> 
+                                    </div>
+
+                                        <div class="col-12 col-lg-6">
+                                            <label for="sobrenome"><b>Sobrenome <i class="fa fa-user-plus" aria-hidden="true"></i></b></label>
+                                            <input type="text" class="form-control" name="sobrenome" placeholder="Ex.:da Silva" required> 
+                                        </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="email"><b>Email <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></b></label>
+                                        <input type="email" class="form-control" name="email" placeholder="Ex.: fulano@gmail.com" required>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="email2"><b>Confirmação de Email <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></b></label>
+                                        <input type="email" class="form-control" name="email2" placeholder="Ex.: fulano@gmail.com" required>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="password"><b>Senha <i class="fa fa-key fa-fw" aria-hidden="true"></i></b></label>
+                                        <input type="password" class="form-control" name="password" placeholder="Digite sua senha" required>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="password2"><b>Confirmação de senha <i class="fa fa-key fa-fw" aria-hidden="true"></i></b></label>
+                                        <input type="password" class="form-control" name="password2" placeholder="Digite sua senha mais uma vez" required>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="cep"><b>CEP <i class="fa fa-map-pin" aria-hidden="true"></i></b></label>
+                                        <input type="text" class="form-control cep-mask" name="cep" placeholder="Ex.: 00000-000" required>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="endereco"><b>Endereço <i class="fa fa-address-card" aria-hidden="true"></i></b></label>
+                                        <input type="text" class="form-control" name="endereco" placeholder="Ex.: Rua do sossego" required>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="numero"><b>Número <i class="fa fa-address-card" aria-hidden="true"></i></b></label>
+                                        <input type="text" class="form-control" name="numero" placeholder="Ex.: N° 187, Bloco A apartamento 34" required>
+                                    </div>
+
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="estado"><b>Estado <i class="fa fa-building" aria-hidden="true"></i></b></label>
+                                            </td>
+                                            <td align="left">
+                                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                                                    <option value="" selected="selected">-- Selecione --</option>
+                                                <option value="Rio Branco/AC">Acre</option> 
+                                                <option value="Maceió/AL">Alagoas</option> 
+                                                <option value="Macapá/AP">Amazonas</option> 
+                                                <option value="Manaus/AM">Amapá</option> 
+                                                <option value="Salvador/BA">Bahia</option> 
+                                                <option value="Fortaleza/CE">Ceará</option> 
+                                                <option value="Brasília/DF">Distrito Federal</option> 
+                                                <option value="Vitória/ES">Espírito Santo</option> 
+                                                <option value="Goiânia/GO">Goiás</option> 
+                                                <option value="São Luís/MA">Maranhão</option> 
+                                                <option value="mt">Mato Grosso</option> 
+                                                <option value="Cuiabá/MT">Mato Grosso do Sul</option> 
+                                                <option value="Belo Horizonto/MG">Minas Gerais</option> 
+                                                <option value="Belém/PA">Pará</option> 
+                                                <option value="João Pessoa/PB">Paraíba</option> 
+                                                <option value="Curitiba/PR">Paraná</option> 
+                                                <option value="Recife/PE">Pernambuco</option> 
+                                                <option value="Teresina/PI">Piauí</option> 
+                                                <option value="Rio de Janeiro/RJ">Rio de Janeiro</option> 
+                                                <option value="Natal/RN">Rio Grande do Norte</option> 
+                                                <option value="Porto Alegre/RS">Rio Grande do Sul</option>
+                                                <option value="Porto Velho/RO">Rondônia</option>  
+                                                <option value="Boa Vista/RR">Roraima</option> 
+                                                <option value="Florianópolis/SC">Santa Catarina</option> 
+                                                <option value="São Paulo/SP">São Paulo</option> 
+                                                <option value="Aracaru/SE">Sergipe</option> 
+                                                <option value="Palmas/TO">Tocantins</option> 
+                                                  </select>
+                                            </td> 
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="nascimento"><b>Data de nascimento <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </b></label>
+                                        <input type="date" class="form-control" name="nascimento" placeholder="Insira sua data de nascimento" required>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6 form-group_content">
+                                        <label for="cpf"><b>Documento <i class="fa fa-address-card" aria-hidden="true"></i></b></label>
+                                        <input type="text" aria-required="true" class="form-control cpf-mask form-group_content" name="cpf" class placeholder="Coloque um documento válido. Ex.: RG, CPF ou outro" value>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="telefone"><b>Telefone <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                        </b></label>
+                                        <input type="text" class="form-control phone-ddd-mask" name="telefone" placeholder="Ex.: (00) 0000-0000">
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label for="celular"><b>Celular * <i class="fa fa-mobile" aria-hidden="true"></i>
+                                        </b></label>
+                                        <input type="text" class="form-control cel-sp-mask" name="celular" placeholder="Ex.: (00) 00000-0000" required>
+                                    </div>
+
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-success" type="submit">Editar seus dados <i class="fa fa-edit" aria-hidden="true"></i></button>
+
+                                        <button class="btn btn-primary" type="submit">Excluir seus dados <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+
+                                        <button type="button" class="btn btn-danger" onclick="exibirMenu()">Voltar <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function exibirMenu()
+            {
+                 location.href = "{% url 'index' %}";
+            } 
+            </script>
+    {% include 'partials/_footer.html' %}
+{% endblock %}
