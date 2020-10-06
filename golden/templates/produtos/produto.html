@@ -31,51 +31,9 @@
                             <p align="justify">Data de lançamento: {{ produto.data_produto }}</p>
                             <p align="justify">Informação do produto: {{ produto.descricao }}</p>
 
+                            <a href="{% url 'carrinho' %}">
                             <p align="justify">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Preço</span>
-                                        <button type="button" class="btn btn-dark">R$ 99,90</button>
-                                        &nbsp;
-                                        <span class="input-group-text">Cores</span>
-                                        <button type="button" class="btn btn-dark">Branco</button>
-                                        <button type="button" class="btn btn-dark">Preto</button>
-                                    </div>
-                                </div>
-                            </p>
-
-                            <p align="justify">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Quantidade</span>
-                                        <button type="button" class="btn btn-dark">1</button>
-                                        <button type="button" class="btn btn-dark">2</button>
-                                        <button type="button" class="btn btn-dark">3</button>
-                                        <button type="button" class="btn btn-dark">4</button>
-                                        <button type="button" class="btn btn-dark">5</button>
-                                        <button type="button" class="btn btn-dark">6</button>
-                                        <button type="button" class="btn btn-dark">7</button>
-                                        <button type="button" class="btn btn-dark">8</button>
-                                        <button type="button" class="btn btn-dark">9</button>
-                                    </div>
-                                </div>
-                            </p>
-
-                            <p align="justify">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Tamanhos</span>
-                                        <button type="button" class="btn btn-dark">P</button>
-                                        <button type="button" class="btn btn-dark">M</button>
-                                        <button type="button" class="btn btn-dark">G</button>
-                                        <button type="button" class="btn btn-dark">GG</button>
-                                    </div>
-                                </div>
-                            </p>
-
-                            <a href="{% url 'produto' produto.id%}">
-                            <p align="justify">
-                            <button class="btn btn-dark" type="submit">Adicionar ao carrinho <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button></p>
+                            <button class="btn btn-outline-dark border border-dark" type="submit">Adicionar ao carrinho <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button></p>
                             </a>
                         </div>
                     </div>
@@ -84,5 +42,6 @@
         </div>
     </section>
     <!-- ##### Best Receipe Area End ##### -->
+
     {% include 'partials/_footer.html' %}
 {% endblock %}
