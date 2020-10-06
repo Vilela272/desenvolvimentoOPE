@@ -47,7 +47,7 @@ def cadastro(request):
             return redirect('cadastro')
 
         if User.objects.filter(email=email).exists():
-            messages.error(request, 'E-mail já cadastrado')
+            messages.error(request, 'Este e-mail já está cadastrado')
             return redirect('cadastro')
         
         if User.objects.filter(username=usuario).exists():
@@ -101,6 +101,9 @@ def enviar_email(request):
     if request.user.is_authenticated:
         return render(request, 'usuarios/email.html')
     return redirect('index')
+
+def recuperar_senha(request):
+    return render(request, 'usuarios/recupersenha.html')
 
 def carrinho(request):
     """

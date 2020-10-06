@@ -44,8 +44,9 @@
                                 <input id="senha" type="password" class="form-control" name="senha" placeholder="Digite aqui sua senha">
                             </div>
                             <div class="col-12 text-center">
-                                <button class="btn btn-success" type="submit">Acessar sua conta</button>
-                                <button type="button" class="btn btn-primary" onclick="exibirCriarConta()">Ainda não tem conta? Clique aqui</button>
+                                <button class="btn btn-outline-success border border-success" type="submit">Acessar sua conta</button>
+                                <button class="btn btn-outline-primary border border-primary" type="button" onclick="exibirCriarConta()">Ainda não tem conta? Clique aqui</button>
+                                <button class="btn btn-outline-danger border border-danger" type="button">Recuperar senha</button>
                             </div>
                         </div>
                     </form>
@@ -59,7 +60,7 @@
 function exibirCriarConta()
 {
      location.href = "{% url 'cadastro' %}";
-} 
+}
 </script>
 
 {% include 'partials/_footer.html' %}

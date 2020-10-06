@@ -13,6 +13,7 @@ urlpatterns = [
     path('cadastro', views.cadastro, name='cadastro'),
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
+    path('recuperarsenha', views.recuperar_senha, name="recuperarsenha"),
     path('carrinho/', views.carrinho, name='carrinho'),
     path('email/',views.enviar_email, name='email')
 ] 
