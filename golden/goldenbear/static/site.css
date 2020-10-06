@@ -364,7 +364,7 @@ textarea:focus {
   z-index: 200;
   top: -80px;
   left: 0;
-  background-color: #40ba37;
+  background-color: #000;
   -webkit-transition-duration: 700ms;
   transition-duration: 700ms; }
   .search-wrapper form {
@@ -444,7 +444,7 @@ textarea:focus {
               color: #b6b6b6;
               font-style: italic; }
               .header-area .top-header-area .breaking-news .ticker ul li a:hover, .header-area .top-header-area .breaking-news .ticker ul li a:focus {
-                color: #40ba37; }
+                color: #000; }
     .header-area .top-header-area .top-social-info a {
       display: inline-block;
       color: #b6b6b6;
@@ -453,7 +453,7 @@ textarea:focus {
       .header-area .top-header-area .top-social-info a:last-child {
         margin-right: 0; }
       .header-area .top-header-area .top-social-info a:hover, .header-area .top-header-area .top-social-info a:focus, .header-area .top-header-area .top-social-info a.active {
-        color: #40ba37; }
+        color: #000; }
   .header-area .delicious-main-menu {
     position: relative;
     width: 100%;
@@ -485,14 +485,14 @@ textarea:focus {
         .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > a:hover, .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > a:focus {
           font-size: 14px;
           color: #ffffff;
-          background-color: #40ba37;
-          border-bottom: 3px solid #1c8314; }
+          background-color: #000;
+          border-bottom: 3px solid #000; }
           .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > a:hover::after, .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > a:focus::after {
             color: #ffffff; }
       .header-area .delicious-main-menu .classy-navbar .classynav > ul > li.active > a {
         color: #ffffff;
-        background-color: #40ba37;
-        border-bottom: 3px solid #1c8314; }
+        background-color: #000;
+        border-bottom: 3px solid #000; }
         .header-area .delicious-main-menu .classy-navbar .classynav > ul > li.active > a::after {
           color: #ffffff; }
     .header-area .delicious-main-menu .classynav .search-btn {
@@ -505,7 +505,7 @@ textarea:focus {
         -webkit-transition-duration: 500ms;
         transition-duration: 500ms; }
       .header-area .delicious-main-menu .classynav .search-btn:hover i, .header-area .delicious-main-menu .classynav .search-btn:focus i {
-        color: #40ba37; }
+        color: #000; }
       @media only screen and (min-width: 992px) and (max-width: 1199px) {
         .header-area .delicious-main-menu .classynav .search-btn {
           margin-left: 50px; } }
@@ -679,7 +679,7 @@ textarea:focus {
   position: relative;
   z-index: 1; }
   .single-best-receipe-area img {
-    border-bottom: 3px solid #40ba37; }
+    border-bottom: 3px solid #000; }
   .single-best-receipe-area .receipe-content {
     padding-top: 30px;
     text-align: center; }
@@ -690,7 +690,7 @@ textarea:focus {
       -webkit-transition-duration: 500ms;
       transition-duration: 500ms; }
       .single-best-receipe-area .receipe-content h5:hover, .single-best-receipe-area .receipe-content h5:focus {
-        color: #40ba37; }
+        color: #000; }
     .single-best-receipe-area .receipe-content .ratings i {
       font-size: 11px;
       color: #fbb710;
@@ -746,7 +746,7 @@ textarea:focus {
   .single-small-receipe-area .receipe-content span {
     font-size: 12px;
     display: block;
-    color: #40ba37; }
+    color: #000; }
   .single-small-receipe-area .receipe-content a {
     display: block; }
     .single-small-receipe-area .receipe-content a h5 {
