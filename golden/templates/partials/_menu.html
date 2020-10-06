@@ -11,9 +11,8 @@
                         <div class="breaking-news">
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
-                                    <li><a href="" style="color:black">Boas vindas!</a></li>
-                                    <li><a href="" style="color:black">As melhores Blusas, Calças, Acessórios, Bonés e Cordões</a></li>
-                                    <li><a href="" style="color:black">Você encontra aqui!</a></li>
+                                    <li><a href="" style="color:black">Seja bem-vindo ao site!</a></li>
+                                    <li><a href="" style="color:black"> Você encontra aqui, as melhores Blusas, Calças, Acessórios, Bonés e Cordões</a></li>
                                     <li><a href="" style="color:black">GOLDEN BEAR COMPANY</a></li>
                                 </ul>
                             </div>
@@ -94,28 +93,28 @@
                                 <ul>
                                     {% if user.is_authenticated %}
 
-                                    <li><a href="{% url 'index' %}"><i class="fa fa-home" aria-hidden="true" ></i> Página principal </a></li>
+                                    <li><a href="{% url 'index' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-home" aria-hidden="true" ></i> Página principal </a></li>
 
-                                    <li><a href="{% url 'sobre' %}"><i class="fa fa-paw" aria-hidden="true"></i> Sobre Nós </a></li>
+                                    <li><a href="{% url 'sobre' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-paw" aria-hidden="true"></i> Sobre Nós </a></li>
 
-                                    <li><a href="{% url 'carrinho' %}"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Carrinho </a></li>
+                                    <li><a href="{% url 'carrinho' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Carrinho </a></li>
 
-                                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a></li>
+                                    <li><a href="{% url 'logout' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a></li>
 
                                     {% else %}
 
-                                    <li><a href="{% url 'index' %}"><i class="fa fa-home" aria-hidden="true"></i> Página principal </a></li>
+                                    <li><a href="{% url 'index' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-home" aria-hidden="true"></i> Página principal </a></li>
 
-                                    <li><a href="{% url 'sobre' %}"><i class="fa fa-paw" aria-hidden="true"></i> Sobre Nós </a></li>
+                                    <li><a href="{% url 'sobre' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-paw" aria-hidden="true"></i> Sobre Nós </a></li>
 
-                                    <li><a href="{% url 'cadastro' %}"><i class="fa fa-registered" aria-hidden="true"></i> Cadastro </a></li>
+                                    <li><a href="{% url 'cadastro' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-registered" aria-hidden="true"></i> Cadastro </a></li>
 
-                                    <li><a href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login </a></li>
+                                    <li><a href="{% url 'login' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-sign-in" aria-hidden="true"></i> Login </a></li>
                                     {% endif %}
                                 </ul>
 
                                 <!-- Formulario de busca -->
-                                <div class="search-btn">
+                                <div class="search-btn btn btn-outline-light">
                                     <i class="fa fa-search" aria-hidden="true" style="color:black"></i>
                                 </div>
                                 <!-- Formulario de busca -->
