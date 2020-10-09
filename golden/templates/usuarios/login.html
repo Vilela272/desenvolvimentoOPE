@@ -2,12 +2,6 @@
 {% load static %}
 {% block content %}
 
-<!-- Preloader -->
-<div id="preloader" >
-    <i class="circle-preloader" ></i>
-    <img src="{% static 'img/core-img/spinner.png' %}" alt="">
-</div>
-
 {% include 'partials/_busca.html' %}
 
 {% include 'partials/_menu.html' %}
@@ -36,12 +30,12 @@
                         <div class="row">
                             <div class="col-12 col-lg-12 ">
                             <label for="email"><b>Email <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></b></label>
-                                <input type="text" id="email" class="form-control" name="email" placeholder="Entre com o email ou usuário cadastrado">
+                                <input type="text" id="email" class="form-control border border-dark rounded" name="email" placeholder="Entre com o email ou usuário cadastrado">
                             </div>
                             
                                 <div class="col-12 col-lg-12">
                                 <label for="senha"><b>Senha <i class="fa fa-key fa-fw" aria-hidden="true"></i></b></label>
-                                <input id="senha" type="password" class="form-control" name="senha" placeholder="Digite aqui sua senha">
+                                <input id="senha" type="password" class="form-control border border-dark rounded" name="senha" placeholder="Digite aqui sua senha">
                             </div>
                             <div class="col-12 text-center">
                                 <button class="btn btn-outline-success border border-success" type="submit">Acessar sua conta</button>

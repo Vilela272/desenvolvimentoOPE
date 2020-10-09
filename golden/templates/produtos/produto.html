@@ -2,14 +2,6 @@
 {% load static %}
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'botao.css}">
-
-<!-- Preloader -->
-<div id="preloader" >
-    <i class="circle-preloader" ></i>
-    <img src="{% static 'img/core-img/spinner.png' %}" alt="">
-</div>
-
 {% include 'partials/_busca.html' %}
 
 {% include 'partials/_menu.html' %}
@@ -35,7 +27,7 @@
                             <p align="justify" style="color:black">Descrição: {{ produto.descricao }}</p>
                             <p align="justify" style="color:black">Valor do produto: {{ produto.preco }}</p>
                             <p align="justify" style="color:black">Quantidade disponível: {{ produto.quantidade }}</p>
-
+                            
                             <a href="{% url 'carrinho' %}">
                                 <p align="justify">
                                     <button class="btn btn-outline-dark border border-dark" type="submit">

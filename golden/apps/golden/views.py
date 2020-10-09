@@ -17,7 +17,7 @@ def produto(request, slug, categoria_id):
     produtos_por_pagina = paginator.get_page(page)
     
     produto_a_exibir = {
-        'produtos': produtos
+        'produtos': produtos_por_pagina
     }
     return render(request, 'produtos/produto.html', produto_a_exibir)
     
@@ -37,7 +37,7 @@ def busca(request):
         buscas = buscas.filter(nome_produto__icontains=nome_a_buscar)
 
     dados = {
-        'buscas' : buscas
+        'buscas' : busca_por_pagina
     }
 
     return render(request, 'produtos/buscar.html', dados)

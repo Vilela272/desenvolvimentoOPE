@@ -18,7 +18,7 @@ def cadastro(request):
         senha = request.POST['password']
         senha2 = request.POST['password2']
 
-        if campo_vazio(usuario) or usuario is None:
+        if (campo_vazio(usuario) or usuario == None):
             messages.error(request, 'O campo usuário não pode ficar em branco')
             return redirect('cadastro')
 
@@ -90,7 +90,6 @@ def logout(request):
     Função que faz o logout do usuário do sistema
     """
     auth.logout(request)
-    messages.success(request, 'Logout realizado com sucesso!!!')
     return redirect('login')
 
 def enviar_email(request):
