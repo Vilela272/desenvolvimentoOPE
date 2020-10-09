@@ -10,7 +10,12 @@ def produto(request, slug, categoria_id):
     Função produto, seleciona o produto por id, para mostrar no HTML
     OBS: Precisa de ajustes para mostrar o produto por determinada categoria
     """
-    produtos = Produto.objects.filter(categoria__produto=categoria_id, publicada=True)
+    produtos = Produto.objects.filter(categoria__produto=categoria_id, publicada=True).order_by('-data_produto')
+
+    paginator = Paginator(produtos, 6)
+    page = request.GET.get('page')
+    produtos_por_pagina = paginator.get_page(page)
+    
     produto_a_exibir = {
         'produtos': produtos
     }

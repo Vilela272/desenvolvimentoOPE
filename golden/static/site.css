@@ -693,7 +693,7 @@ textarea:focus {
         color: #000; }
     .single-best-receipe-area .receipe-content .ratings i {
       font-size: 11px;
-      color: #fbb710;
+      color: #000;
       display: inline-block;
       padding: 0 1px; }
 
@@ -759,10 +759,10 @@ textarea:focus {
         .single-small-receipe-area .receipe-content a h5 {
           font-size: 16px; } }
       .single-small-receipe-area .receipe-content a h5:hover, .single-small-receipe-area .receipe-content a h5:focus {
-        color: #40ba37; }
+        color: #000; }
   .single-small-receipe-area .receipe-content .ratings i {
     font-size: 11px;
-    color: #fbb710;
+    color: #000;
     display: inline-block;
     padding: 0 1px; }
   .single-small-receipe-area .receipe-content p {
@@ -1005,7 +1005,7 @@ textarea:focus {
     .receipe-headline h2 {
       font-size: 24px; } }
 .receipe-headline .receipe-duration {
-  border-left: 3px solid #40ba37;
+  border-left: 3px solid #000;
   padding: 15px; }
   .receipe-headline .receipe-duration h6 {
     font-size: 15px;
