@@ -68,7 +68,7 @@ def login(request):
         email = request.POST['email']
         senha = request.POST['senha']
        
-        if campo_vazio(email)  or campo_vazio(senha):
+        if campo_vazio(email) or campo_vazio(senha):
             messages.error(request, 'ATENÇÃO!!! Campo e-mail e/ou senha não podem ficar em branco')
             return redirect('login')
 
@@ -82,7 +82,7 @@ def login(request):
         if User.objects.filter(email=email).exists():
             messages.error(request, 'ATENÇÃO!!! E-mail e/ou senha inválidos')
         else:
-            messages.error(request, 'ATENÇÃO!!! Este e-mail não existe na base de dados')
+            messages.error(request, 'ATENÇÃO!!! Este e-mail não está cadastrado')
     return render(request, 'usuarios/login.html')
 
 def logout(request):
@@ -90,7 +90,7 @@ def logout(request):
     Função que faz o logout do usuário do sistema
     """
     auth.logout(request)
-    messages.warning(request, 'Logout realizado com sucesso!!!')
+    messages.success(request, 'Logout realizado com sucesso!!!')
     return redirect('login')
 
 def enviar_email(request):

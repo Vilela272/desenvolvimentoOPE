@@ -1,13 +1,20 @@
+from ajax_select import make_ajax_form
+from ajax_select.admin import AjaxSelectAdmin
+
 from django.contrib import admin
-from .models import Categorias
+from .models import Categoria
 
 # Register your models here.
-class ListandoCategorias(admin.ModelAdmin):
-    list_display = ('id', 'nome_categoria', 'publicada')
+class ListandoCategorias(AjaxSelectAdmin):
+    prepopulated_fields = {"slug": ('nome_categoria', )}
+    list_display = ('id', 'nome_categoria','slug', 'sub_categoria','foto_categoria', 'publicada')
     list_display_links = ('id',  'nome_categoria' )
     search_fields = ('id', 'nome_categoria', )
     list_filter = ('nome_categoria', )
     list_editable = ('publicada', )
+    form = make_ajax_form(Categoria, {
+        'sub_categoria': 'categorias'
+    })
     list_per_page = 3
 
-admin.site.register(Categorias, ListandoCategorias)
+admin.site.register(Categoria, ListandoCategorias)
