@@ -85,11 +85,11 @@
                             <ul>
                                 {% if user.is_authenticated %}
 
-                                <li><a href="{% url 'index' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-home" aria-hidden="true" ></i> Home </a></li>
+                                <li><a href="{% url 'index' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-home" aria-hidden="true" ></i> Página Principal </a></li>
 
                                 <li><a href="{% url 'sobre' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-paw" aria-hidden="true"></i> Sobre Nós </a></li>
 
-                                <li><a href="#" class="btn btn-outline-dark border border-dark"><i class="fa fa-users"aria-hidden="true"></i> Meus dados </a></li>
+                                <li><a href="{% url 'password_change' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-users"aria-hidden="true"></i> Meus dados </a></li>
 
                                 <li><a href="{% url 'carrinho' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Carrinho </a></li>
 

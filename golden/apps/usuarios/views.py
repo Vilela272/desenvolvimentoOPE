@@ -18,40 +18,40 @@ def cadastro(request):
         senha = request.POST['password']
         senha2 = request.POST['password2']
 
-        if campo_vazio(usuario) or usuario is None:
-            messages.error(request, 'O campo usuário não pode ficar em branco')
+        if (campo_vazio(usuario) or usuario == None):
+            messages.error(request, 'ATENÇÃO!!! O campo usuário não pode ficar em branco')
             return redirect('cadastro')
 
         if campo_vazio(nome) or nome == None:
-            messages.error(request, 'O campo nome não pode ficar em branco')
+            messages.error(request, 'ATENÇÃO!!! O campo nome não pode ficar em branco')
             return redirect('cadastro')
 
         if campo_vazio(sobrenome) or sobrenome == None:
-            messages.error(request, 'O campo sobrenome não pode ficar em branco')
+            messages.error(request, 'ATENÇÃO!!! O campo sobrenome não pode ficar em branco')
             return redirect('cadastro')
         
         if campo_vazio(email) or email == None:
-            messages.error(request, 'O campo email não pode ficar em branco')
+            messages.error(request, 'ATENÇÃO!!! O campo email não pode ficar em branco')
             return redirect('cadastro')
 
         if campo_vazio(email2) or email2 == None:
-            messages.error(request, 'O campo confirmação de email não pode ficar em branco')
+            messages.error(request, 'ATENÇÃO!!! O campo confirmação de email não pode ficar em branco')
             return redirect('cadastro')
 
         if email_nao_sao_iguais(email, email2):
-            messages.error(request, 'O campo de e-mail e confirmação de e-mail não são iguais')
+            messages.error(request, 'ATENÇÃO!!! O campo de e-mail e confirmação de e-mail não são iguais')
             return redirect('cadastro')
 
         if senhas_nao_sao_iguais(senha, senha2):
-            messages.error(request, 'O campo de senha e confirmação de senha não conferem')
+            messages.error(request, 'ATENÇÃO!!! O campo de senha e confirmação de senha não conferem')
             return redirect('cadastro')
 
         if User.objects.filter(email=email).exists():
-            messages.error(request, 'Este e-mail já está cadastrado')
+            messages.error(request, 'ATENÇÃO!!! Este e-mail já está cadastrado')
             return redirect('cadastro')
         
         if User.objects.filter(username=usuario).exists():
-            messages.error(request, 'Este nome de usuário ja existe. Por favor, insira outro')
+            messages.error(request, 'ATENÇÃO!!! Este nome de usuário ja existe. Por favor, insira outro')
             return redirect('cadastro')
         user = User.objects.create_user(username=usuario, email=email, password=senha, first_name=nome, last_name=sobrenome)
         user.save()
@@ -90,7 +90,6 @@ def logout(request):
     Função que faz o logout do usuário do sistema
     """
     auth.logout(request)
-    messages.success(request, 'Logout realizado com sucesso!!!')
     return redirect('login')
 
 def enviar_email(request):
@@ -111,7 +110,7 @@ def carrinho(request):
     """
     if request.user.is_authenticated:
         return render(request, 'empresa/carrinho.html')
-    return redirect('index')
+    return redirect('produto')
 
 def campo_vazio(campo):
     """
