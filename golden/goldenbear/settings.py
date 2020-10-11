@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os, sys
 from pathlib import Path
+from django.core.mail import send_mail
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,6 @@ SECRET_KEY = ')wcksy(_8kpz9b(n6^-=4tmiac22od!l$opt_+nb6f^=ruryp$'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -146,3 +146,14 @@ MESSAGE_TAGS = {
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, '../apps'))
+
+
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+
+# if DEBUG:
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # During development only
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'guilhermevm99@gmail.com'
+EMAIL_HOST_PASSWORD = '2105guI*'

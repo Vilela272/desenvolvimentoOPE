@@ -6,74 +6,85 @@
 
 {% include 'partials/_menu.html' %}
 
-<!-- Declaração do formulário --> 
+<!-- ##### Contact Form Area Start ##### -->
 <div class="contact-area section-padding-0">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="section-heading">
-                    <h2>Crie sua conta no site da Golden Bear <i class="fa fa-registered" aria-hidden="true"></i></h2>
+
+                <div class="alert alert-success text-dark" role="alert">
+
+                    <h4 class="alert-heading text-center">Prezado, {{ user.first_name }} {{ user.last_name }}!</h4> 
+                    
+                    <h4 class="alert-heading">Visualize seus produtos adicionados ao carrinho do site da GOLDEN BEAR COMPANY 
+                        <i class="fa fa-registered" aria-hidden="true"></i></h4>
+
+                    <p style="color:black">A sua loja digital, personalizada da GOLDEN BEAR COMPANY, onde você encontrará camisas, 
+                        calças, blusas, acessórios, bonés e chaveiros, fique a vontade para entrar em contato conosco! 
+                    </p>
+
+                    <hr/>
+                    
+                    <p class="mb-0" style="color:black">Abaixo a tabela com os produtos em que você adicionou ao carrinho. Ao confirmar a compra
+                        você será redirecionado para confirma o seu endereço de entrega e opções de pagamento.
+                    </p>
+                </div>
+
+                {% include 'partials/_alertas.html' %}
+                <div class="contact-form-area">
+                    <form action="{% url 'cadastro' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="rounded table table-striped border border-dark ">
+                                    <thead class="rounded thead-dark">
+                                    <tr class="rounded">
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Valor Unitário</th>
+                                        <th scope="col">Quantidade</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">#001</th>
+                                        <td>Camisa Azul</td>
+                                        <td>59,90</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#002</th>
+                                        <td>Pulseira de Ouro</td>
+                                        <td>299,99</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#003</th>
+                                        <td>Jaqueta de Couro</td>
+                                        <td>499,00</td>
+                                        <td>1</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="classynav col-12 text-center">
+                                <button class="btn btn-outline-dark border border-dark rounded btn-block" 
+                                type="submit">Confirmar compra <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </button>
+
+                                <button class="btn btn-outline-dark border border-dark btn-block" 
+                                type="button">continuar comprando</button>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        {% include 'partials/_alertas.html' %}
-        <div class="row">
-            <div class="col-12">
+    </div>
+</div>
 
-                <div class="alert alert-info" role="alert">
-                    INFORMAÇÃO! Todos os campos são obrigatórios
-                </div>
-
-                <div class="contact-form-area">
-                    <form method="post" target="pagseguro"  
-                    action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
-                        {% csrf_token %}
-                            <div class="row">
-                                <div class="col-12 col-lg-12">
-                                            <!-- Campos obrigatórios --> 
-                                            <label for="email"><b>Email </b></label> 
-                                            <input name="receiverEmail" type="email" value="suporte@lojamodelo.com.br">
-                                            
-                                            <label for="email"><b>Moeda </b></label> 
-                                            <input name="currency" type="text" value="BRL">  
-                                    
-                                            <!-- Itens do pagamento (ao menos um item é obrigatório) -->  
-                                            <input name="itemId1" type="hidden" value="0001">  
-                                            <input name="itemDescription1" type="hidden" value="Notebook Prata">  
-                                            <input name="itemAmount1" type="hidden" value="24300.00">  
-                                            <input name="itemQuantity1" type="hidden" value="1">  
-                                            <input name="itemWeight1" type="hidden" value="1000">  
-                                            <input name="itemId2" type="hidden" value="0002">  
-                                            <input name="itemDescription2" type="hidden" value="Notebook Rosa">  
-                                            <input name="itemAmount2" type="hidden" value="25600.00">  
-                                            <input name="itemQuantity2" type="hidden" value="2">  
-                                            <input name="itemWeight2" type="hidden" value="750">  
-                                    
-                                            <!-- Código de referência do pagamento no seu sistema (opcional) -->  
-                                            <input name="reference" type="hidden" value="REF1234">  
-                                            
-                                            <!-- Informações de frete (opcionais) -->  
-                                            <input name="shippingType" type="hidden" value="1">  
-                                            <input name="shippingAddressPostalCode" type="hidden" value="01452002">  
-                                            <input name="shippingAddressStreet" type="hidden" value="Av. Brig. Faria Lima">  
-                                            <input name="shippingAddressNumber" type="hidden" value="1384">  
-                                            <input name="shippingAddressComplement" type="hidden" value="5o andar">  
-                                            <input name="shippingAddressDistrict" type="hidden" value="Jardim Paulistano">  
-                                            <input name="shippingAddressCity" type="hidden" value="Sao Paulo">  
-                                            <input name="shippingAddressState" type="hidden" value="SP">  
-                                            <input name="shippingAddressCountry" type="hidden" value="BRA">  
-                                    
-                                            <!-- Dados do comprador (opcionais) -->  
-                                            <input name="senderName" type="hidden" value="José Comprador">  
-                                            <input name="senderAreaCode" type="hidden" value="11">  
-                                            <input name="senderPhone" type="hidden" value="56273440">  
-                                            <input name="senderEmail" type="hidden" value="comprador@uol.com.br">  
-                                    
-                                            <!-- submit do form (obrigatório) -->  
-                                            <input alt="Pague com PagSeguro" name="submit"  type="image"  
-                                            src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/120x53-pagar.gif"/> 
-                                        </form>   
-                        
 
 {% include 'partials/_footer.html' %}
 {% endblock %}

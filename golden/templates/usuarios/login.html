@@ -12,36 +12,54 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="section-heading">
-                    <h2><i class="fa fa-sign-in" aria-hidden="true"></i> Login </h2>
-                </div>
-            </div>
-        </div>
-        {% include 'partials/_alertas.html' %}
-        <div class="row">
-            <div class="col-12">
                 <div class="contact-form-area">
                     <form action="{% url 'login' %}" method="POST">
-                            {% csrf_token %}
+                        {% csrf_token %}
+                        <div class="alert alert-success text-dark" role="alert">
+                            <h4 class="alert-heading">Prezados, bem-vindos! Realizem o seu
+                                <i class="fa fa-sign-in" aria-hidden="true"></i> 
+                                    Login no site da GOLDEN BEAR COMPANY <i class="fa fa-registered" aria-hidden="true">
+                                </i>
+                            </h4>
 
-                        <div class="alert alert-info" role="alert">
-                            INFORMAÇÃO! Inserir e-mail e senha para logar no sistema
+                            <p style="color:black">A sua loja digital, personalizada da GOLDEN BEAR COMPANY, onde você encontrará camisas, 
+                                calças, blusas, acessórios, bonés e chaveiros, fique a vontade para entrar em contato conosco! 
+                            </p>
+
+                            <hr/>
+                            
+                            <p class="mb-0" style="color:black">INFORMAÇÃO!!! Todos os dados a seguir 
+                                serão obrigatórios para realizar login no site da GOLDEN BEAR COMPANY 
+                                <i class="fa fa-paw" aria-hidden="true"></i></p>
                         </div>
+                        {% include 'partials/_alertas.html' %}
                         <div class="row">
+
                             <div class="col-12 col-lg-12 ">
-                            <label for="email"><b>Email <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></b></label>
+                                <label for="email"><b>Email <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></b></label>
                                 <input type="text" id="email" class="form-control border border-dark rounded" name="email" placeholder="Entre com o email ou usuário cadastrado">
                             </div>
-                            
-                                <div class="col-12 col-lg-12">
+                
+                            <div class="col-12 col-lg-12">
                                 <label for="senha"><b>Senha <i class="fa fa-key fa-fw" aria-hidden="true"></i></b></label>
                                 <input id="senha" type="password" class="form-control border border-dark rounded" name="senha" placeholder="Digite aqui sua senha">
                             </div>
-                            <div class="col-12 text-center">
-                                <button class="btn btn-outline-success border border-success" type="submit">Acessar sua conta</button>
-                                <button class="btn btn-outline-primary border border-primary" type="button" onclick="exibirCriarConta()">Ainda não tem conta? Clique aqui</button>
-                                <button class="btn btn-outline-danger border border-danger" type="button">Recuperar senha</button>
+
+                            <div class="form-group col-12 col-lg-12">
+                                <div class="form-check mb-2">
+                                  <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                                  <label class="form-check-label" for="autoSizingCheck">
+                                    Lembre-me
+                                  </label>
+                                </div>
                             </div>
+
+                            <div class="col-12 text-center">
+                                <button class="btn btn-outline-dark border border-dark btn-block" type="submit">Acessar sua conta</button>
+                                <button class="btn btn-outline-dark border border-dark btn-block" type="button" onclick="exibirCriarConta()">Ainda não tem conta? Clique aqui</button>
+                                <button class="btn btn-outline-dark border border-dark btn-block" type="button" onclick="exibirRecuperarSenha()">Recuperar senha</button>   
+                            </div>
+
                         </div>
                     </form>
                 </div>
@@ -54,6 +72,11 @@
 function exibirCriarConta()
 {
      location.href = "{% url 'cadastro' %}";
+}
+
+function exibirRecuperarSenha()
+{
+     location.href = "{% url 'password_reset' %}";
 }
 </script>
 

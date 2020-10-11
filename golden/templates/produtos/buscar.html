@@ -20,16 +20,27 @@
                     {% else %}
                         <img src="{{ produto.foto_produto.url }}" alt="">
                     {% endif %}
-                    <div class="receipe-content">
-                        <p align="justify">Produto: {{ produto.nome_produto}}</p>
-                        <p align="justify">Data de lançamento: {{ produto.data_produto }}</p>
-                        <p align="justify">Informação do produto: {{ produto.descricao }}</p>
+                    <div class="col-12 col-md-12">
+                        <div class="receipe-content">
+                            <p align="justify" style="color:black">Nome do produto: {{ produto.nome_produto}}</p>
+                            <p align="justify" style="color:black">Lançamento: {{ produto.data_produto }}</p>
+                            <p align="justify" style="color:black">Descrição: {{ produto.descricao }}</p>
+                            <p align="justify" style="color:black">Valor do produto: {{ produto.preco }}</p>
+                            
+                            <div class="form-group">
+                                <input class="form-control border border-dark" name="quantity" type="number"
+                                    title="Quantidade de unidades" placeholder="Seleciore a quantidade desejada">
+                            </div>
+                            
 
-                        <a href="{% url 'carrinho' %}">
-                        <p align="justify">
-                        <button class="btn btn-outline-dark border border-dark" type="submit">Adicionar ao carrinho <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button></p>
-                        </a>
-
+                            <a href="{% url 'carrinho' %}">
+                                <p align="justify">
+                                    <button class="btn btn-outline-dark border border-dark btn-block" 
+                                    type="submit">Adicionar ao carrinho <i class="fa fa-cart-arrow-down" 
+                                    aria-hidden="true"></i></button>
+                                </p>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

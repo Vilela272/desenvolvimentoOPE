@@ -11,6 +11,6 @@ class ListandoProdutos(admin.ModelAdmin):
     search_fields = ('nome_produto', )
     list_filter = ('categoria', 'publicada', )
     list_editable = ('publicada', )
-    list_per_page = 5
+    list_per_page = 4
 
 admin.site.register(Produto, ListandoProdutos)
