@@ -27,14 +27,14 @@ def busca(request):
     Função de busca, que realiza busca de determinado produto, que o usuário digitou
     """
     buscas = Produto.objects.order_by('-data_produto').filter(publicada=True)
-
-    paginator = Paginator(buscas, 6)
-    page = request.GET.get('page')
-    busca_por_pagina = paginator.get_page(page)
-
+    
     if 'buscar' in request.GET:
         nome_a_buscar = request.GET['buscar']
         buscas = buscas.filter(nome_produto__icontains=nome_a_buscar)
+    
+    paginator = Paginator(buscas, 6)
+    page = request.GET.get('page')
+    busca_por_pagina = paginator.get_page(page)
 
     dados = {
         'buscas' : busca_por_pagina

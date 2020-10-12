@@ -19,7 +19,7 @@
                     {% if produto.foto_produto == '' %}
                         <img src="{% static 'img/login-img/goldenComLogo.jpeg' %}" alt="">
                     {% else %}
-                        <img src="{{ produto.foto_produto.url }}" alt="">
+                        <img src="{{ produto.foto_produto.url }}" width=”1” height=”2” alt="">
                     {% endif %}
                     <div class="col-12 col-md-12">
                         <div class="receipe-content">

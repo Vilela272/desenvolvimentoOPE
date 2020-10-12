@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_list_or_404, get_object_or_40
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from .models import Cliente
-
+from django.http import HttpResponse
 # Create your views here.
 
 def cadastro(request):
