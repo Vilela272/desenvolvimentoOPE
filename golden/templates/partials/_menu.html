@@ -10,9 +10,8 @@
                     <div class="breaking-news">
                         <div id="breakingNewsTicker" class="ticker">
                             <ul>
-                                <li><a href="" style="color:black">Seja bem-vindo ao site!</a></li>
-                                <li><a href="" style="color:black"> Você encontra aqui, as melhores Blusas, Calças, Acessórios, Bonés e Cordões</a></li>
-                                <li><a href="" style="color:black">GOLDEN BEAR COMPANY</a></li>
+                                <li><a href="" style="color:black">Seja bem-vindo ao site da Golden Bear Company</a></li>
+                                <li><a href="" style="color:black"> Você encontra aqui, <br> as melhores blusas, calças, acessórios, bonés, bordões e chaveiros</a></li>
                             </ul>
                         </div>
                     </div>
@@ -86,8 +85,6 @@
                                 {% if user.is_authenticated %}
 
                                 <li><a href="{% url 'index' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-home" aria-hidden="true" ></i> Página Principal </a></li>
-
-                                <li><a href="{% url 'sobre' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-paw" aria-hidden="true"></i> Sobre Nós </a></li>
 
                                 <li><a href="{% url 'password_change' %}" class="btn btn-outline-dark border border-dark"><i class="fa fa-users"aria-hidden="true"></i> Meus dados </a></li>
 
