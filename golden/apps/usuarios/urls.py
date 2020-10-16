@@ -11,6 +11,7 @@ from . import views
 
 urlpatterns = [
     path('cadastro', views.cadastro, name='cadastro'),
+    path('meus_dados', views.meus_dados, name='meus_dados'),
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
     path('recuperarsenha', views.recuperar_senha, name="recuperarsenha"),
