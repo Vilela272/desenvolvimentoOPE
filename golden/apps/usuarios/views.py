@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages, sessions
 from django.http import HttpResponse
 from .forms import UserForm, UserProfile, UserProfileForm
+
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 
 
@@ -195,3 +198,23 @@ def meus_dados(request):
 
         return render(request, 'usuarios/meus_dados.html', context)
     return redirect('login')
+
+
+def send_email(request):
+    subject = 'Resete de senha'
+    message = 'Chamada para o metodo'
+    from_email = request.POST.get('email', '')
+    if message and from_email:
+        try:
+            send_mail(subject, message, from_email, ['admin@example.com'])
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        return redirect(request, '../../usuarios/login')
+    else:
+        # In reality we'd use a form class
+        # to get proper validation errors.
+        return redirect('../../password_reset/')
+
+def resetar_senha(request):
+    return redirect('password_reset_form')
+    
