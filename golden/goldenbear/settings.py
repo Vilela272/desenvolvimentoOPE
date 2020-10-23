@@ -156,7 +156,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PWD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-print(DEFAULT_FROM_EMAIL)
 
 # EMAIL_HOST_USER = 'guilhermevilelamoreirav@gmail.com'
 # EMAIL_HOST_PASSWORD = '2107guI*'

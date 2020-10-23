@@ -14,10 +14,5 @@ urlpatterns = [
     path('meus_dados', views.meus_dados, name='meus_dados'),
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
-    path('recuperarsenha', views.recuperar_senha, name="recuperarsenha"),
     path('carrinho/', views.carrinho, name='carrinho'),
-    path('email/',views.enviar_email, name='email'),
-
-    path('password_reset/', views.send_email, name='password_reset'),
-    path('password_reset/reset', views.resetar_senha, name='password_reset'),
 ] 

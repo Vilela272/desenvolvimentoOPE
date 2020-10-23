@@ -77,11 +77,18 @@ def cadastro(request):
 
 def login(request):
     """
-    Função que faz a validação do login do usuário, login é permitido com e-mail e senha
+    Função que faz a validação do login do usuário, 
+    login é permitido com e-mail e senha
     """
+
+    dados_cookie = {
+        'email': request.COOKIES.get('email')
+    }
+    
     if request.method == 'POST':
         email = request.POST['email']
         senha = request.POST['senha']
+        
 
         if campo_vazio(email) or campo_vazio(senha):
             messages.error(
@@ -95,35 +102,28 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
-                return redirect('index')
+                response = redirect('index')
+                response.set_cookie(key='email', value=email)
+                return response
         if User.objects.filter(email=email).exists():
             messages.error(request, 'ATENÇÃO!!! E-mail e/ou senha inválidos')
         else:
             messages.error(
                 request, 'ATENÇÃO!!! Este e-mail não está cadastrado')
-    return render(request, 'usuarios/login.html')
+
+        response = render(request, 'usuarios/login.html')  # django.http.HttpResponse
+        response.set_cookie(key='email', value=email)
+        return response
+
+    return render(request, 'usuarios/login.html', dados_cookie)
 
 
 def logout(request):
     """
-    Função que faz o logout do usuário do sistema
+    Função que faz a validação do logout do usuário do sistema
     """
     auth.logout(request)
     return redirect('login')
-
-
-def enviar_email(request):
-    """
-    Função não utilizada no momento, 
-    mas se for necessário, rediciona o usuário para a página do email
-    """
-    if request.user.is_authenticated:
-        return render(request, 'usuarios/email.html')
-    return redirect('index')
-
-
-def recuperar_senha(request):
-    return render(request, 'usuarios/recupersenha.html')
 
 
 def carrinho(request):
@@ -198,23 +198,3 @@ def meus_dados(request):
 
         return render(request, 'usuarios/meus_dados.html', context)
     return redirect('login')
-
-
-def send_email(request):
-    subject = 'Resete de senha'
-    message = 'Chamada para o metodo'
-    from_email = request.POST.get('email', '')
-    if message and from_email:
-        try:
-            send_mail(subject, message, from_email, ['admin@example.com'])
-        except BadHeaderError:
-            return HttpResponse('Invalid header found.')
-        return redirect(request, '../../usuarios/login')
-    else:
-        # In reality we'd use a form class
-        # to get proper validation errors.
-        return redirect('../../password_reset/')
-
-def resetar_senha(request):
-    return redirect('password_reset_form')
-    
