@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_busca.html' %}
+
+{% include 'partials/_menu.html' %}
+
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success text-dark" role="alert">
+                    <h4 class="alert-heading text-center">meus dados da GOLDEN BEAR COMPANY
+                        <i class="fa fa-registered" aria-hidden="true"></i></h4>
+
+                    <p style="color:black">A sua loja digital e personalizada da GOLDEN BEAR COMPANY. Aqui você
+                        encontrará camisas,
+                        calças, blusas, acessórios, bonés e chaveiros. Fique à vontade para entrar em contato conosco!
+                    </p>
+
+                    <hr />
+
+                    <p class="mb-0" style="color:black">Todos os dados a seguir
+                        serão obrigatórios para realizar as compras no site da GOLDEN BEAR COMPANY
+                        <i class="fa fa-paw" aria-hidden="true"></i>
+                    </p>
+
+                </div>
+
+                {% include 'partials/_alertas.html' %}
+                <div class="contact-form-area text-dark">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="row text-dark">
+
+                            <div class="col-12 col-lg-12 text-dark">
+                                <b> {{ user_form.as_table }}</b>
+                                <b>{{ profile_form.as_table }}</b>
+                            </div>
+
+                            <div class="classynav col-12 text-center text-dark">
+
+                                <button type="submit" class="btn btn-outline-dark border border-dark btn-block">
+                                    Salvar dados </button>
+
+                                <button class="btn btn-outline-dark border border-dark btn-block" type="button"
+                                    onclick="exibirAtualizarrSenha()">Atulizar senha</button>
+                            </div>
+
+                        </div>
+
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    function exibirLoginConta() {
+        location.href = "{% url 'login' %}";
+    }
+
+    function exibirAtualizarrSenha() {
+        location.href = "{% url 'password_change' %}";
+    }
+</script>
+{% include 'partials/_footer.html' %}
+{% endblock %}
