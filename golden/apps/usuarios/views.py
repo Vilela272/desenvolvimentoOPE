@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages, sessions
 from django.http import HttpResponse
 from .forms import UserForm, UserProfile, UserProfileForm
+from golden.models import PedidoProduto, Pedido, Produto
 
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
@@ -82,13 +83,13 @@ def login(request):
     """
 
     dados_cookie = {
-        'email': request.COOKIES.get('email')
+        'email': request.COOKIES.get('email'),
+        'senha': request.COOKIES.get('senha')
     }
-    
+
     if request.method == 'POST':
         email = request.POST['email']
         senha = request.POST['senha']
-        
 
         if campo_vazio(email) or campo_vazio(senha):
             messages.error(
@@ -102,7 +103,7 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
-                response = redirect('index')
+                response = redirect('meus_dados')
                 response.set_cookie(key='email', value=email)
                 return response
         if User.objects.filter(email=email).exists():
@@ -111,7 +112,8 @@ def login(request):
             messages.error(
                 request, 'ATENÇÃO!!! Este e-mail não está cadastrado')
 
-        response = render(request, 'usuarios/login.html')  # django.http.HttpResponse
+        # django.http.HttpResponse
+        response = render(request, 'usuarios/login.html')
         response.set_cookie(key='email', value=email)
         return response
 

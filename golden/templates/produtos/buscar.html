@@ -46,9 +46,15 @@
             </div>
             {% endfor %}
             {% else %}
-            <div class="col-12 col-sm-6 col-lg-4">
-                <p>Produto não foi encontrado em nosso sistema!</p>
-            </div>
+            <center align="center">
+                <br><br><br>
+                  <img
+                  src="{% static 'img/bg-produto/produtoNaoEncontrado.png' %}"
+                  width="500"
+                  height="100"
+                  alt=""
+                  />
+              </center>
             {% endif %}
         </div>
     </div>
