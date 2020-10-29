@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Preloader -->
+<div id="preloader" >
+    <i class="circle-preloader" ></i>
+    <img src="{% static 'img/core-img/spinner.png' %}" alt="">
+</div>
+
+{% load static %}
+<!-- ##### Start Payment ##### -->
+<header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-between">
+                    <!-- Breaking News -->
+                    <div class="col-12 col-sm-6">
+                        <div class="breaking-news">
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    <li><a href="" style="color:black">Boas vindas!</a></li>
+                                    <li><a href="" style="color:black">As melhores Blusas, Calças, Acessórios, Bonés e Cordões</a></li>
+                                    <li><a href="" style="color:black">Você encontra aqui!</a></li>
+                                    <li><a href="" style="color:black">GOLDEN BEAR COMPANY</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+        <!-- Top Social Info -->
+        <div class="col-12 col-sm-6">
+            <div class="top-social-info text-right">
+                <a rel="noopener noreferrer" href="https://www.facebook.com/goldenbearcompany/" target="_blank"><i class="fa fa-facebook" aria-hidden="true" style="color:black"></i></a>
+                <a rel="noopener noreferrer" href="https://instagram.com/goldenbearcompany?igshid=ztaa1r9rtdic" target="_blank"><i class="fa fa-instagram" aria-hidden="true" style="color:black"></i></a>
+                <a href="{% url 'email' %}" target="_blank"><i class="fa fa-envelope" aria-hidden="true" style="color:black"></i>
+                </a>
+                <a href="" target="_blank" onclick="exibirTelefone()"><i class="fa fa-phone"aria-hidden="true" style="color:black"></i></a>
+            </div>
+        </div>
+</div>
+</div>
+</div>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{% static 'img/login-img/goldenComLogo.jpeg' %}" alt="" width="200" height="200">
+    </div>
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Seu Carrinho</span>
+                <span class="badge badge-secondary badge-pill">2</span>
+            </h4>
+            <ul class="list-group mb-3 sticky-top">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Camiseta</h6>
+                    </div>
+                    <span class="text-muted">R$ 29,99</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Calça moletom</h6>
+                    </div>
+                    <span class="text-muted">R$ 79,99</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Frete</h6>
+                    </div>
+                    <span class="text-muted">R$ 19,99</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                        <h6 class="my-0">CUPOM DE DESCONTO</h6>
+                    </div>
+                    <span class="text-success">-R$10,00</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total</span>
+                    <strong>R$ 170,00</strong>
+                </li>
+            </ul>
+            <form class="card p-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="digite aqui">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary">CUPOM DE DESCONTO</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Endereço</h4>
+            <form class="needs-validation" novalidate="">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="primeironome">Primeiro Nome</label>
+                        <input type="text" class="form-control" id="PrimeiroNome" placeholder="" value="" required="">
+                        <div class="invalid-feedback"> Valid first name is required. </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="ultimonome">Último Nome</label>
+                        <input type="text" class="form-control" id="UltimoNome" placeholder="" value="" required="">
+                        <div class="invalid-feedback"> Valid last name is required. </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="address">Endereço</label>
+                    <input type="text" class="form-control" id="address" required="">
+                    <div class="invalid-feedback"> Por favor digite seu endereço </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" class="form-control" id="bairro" placeholder="" value="" required="">
+                        <div class="invalid-feedback"> Por favor digite seu bairro </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cep">CEP</label>
+                        <input type="text" class="form-control" id="cep" placeholder="" value="" required="">
+                        <div class="invalid-feedback"> Por favor digite o CEP </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" class="form-control" id="cidade" placeholder="" value="" required="">
+                        <div class="invalid-feedback"> Por favor digite sua cidade </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="estado">Estado</label>
+                            <option>Selecione</option>
+                        </select>
+                            <div class="invalid-feedback"> Selecione o estado </div>
+                            <select>
+                                <option value="">Selecione</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espirito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                <hr class="mb-4">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <label class="custom-control-label" for="save-info">Salvar as informações para uma próxima compra.</label>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">FINALIZAR COMPRA</button>
+            </form>
+        </div>
+    </div>
+</div>
+    {% include 'partials/_footer.html' %}
+{% endblock %}

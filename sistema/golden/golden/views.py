@@ -1,3 +1,4 @@
+import django.contrib.sessions
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from .models import Product
 
@@ -12,7 +13,6 @@ def index(request):
     return render(request, 'index.html',  dados)
 
 def produto(request, produto_id):
-
     produto = get_object_or_404(Product, pk=produto_id)
 
     produto_a_exibir = {
@@ -22,6 +22,16 @@ def produto(request, produto_id):
 
 def sobre(request):
     return render(request, 'sobre.html')
+
+def carrinho(request, produto, dt_lanc, info, val):
+    produto_tab = produto
+    return render(request, 'usuarios/carrinho.html')
+
+def pagamento(request):
+    return render(request, 'usuarios/pagamento.html')
+
+def acompanhamento(request):
+    return render(request, 'usuarios/acompanhamento.html')
 
 def buscar(request):
 

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Preloader -->
+<div id="preloader" >
+    <i class="circle-preloader" ></i>
+    <img src="{% static 'img/core-img/spinner.png' %}" alt="">
+</div>
+
+{% load static %}
+<!-- ##### Start Payment ##### -->
+<header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-between">
+                    <!-- Breaking News -->
+                    <div class="col-12 col-sm-6">
+                        <div class="breaking-news">
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    <li><a href="" style="color:black">Boas vindas!</a></li>
+                                    <li><a href="" style="color:black">As melhores Blusas, Calças, Acessórios, Bonés e Cordões</a></li>
+                                    <li><a href="" style="color:black">Você encontra aqui!</a></li>
+                                    <li><a href="" style="color:black">GOLDEN BEAR COMPANY</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+        <!-- Top Social Info -->
+        <div class="col-12 col-sm-6">
+            <div class="top-social-info text-right">
+                <a rel="noopener noreferrer" href="https://www.facebook.com/goldenbearcompany/" target="_blank"><i class="fa fa-facebook" aria-hidden="true" style="color:black"></i></a>
+                <a rel="noopener noreferrer" href="https://instagram.com/goldenbearcompany?igshid=ztaa1r9rtdic" target="_blank"><i class="fa fa-instagram" aria-hidden="true" style="color:black"></i></a>
+                <a href="{% url 'email' %}" target="_blank"><i class="fa fa-envelope" aria-hidden="true" style="color:black"></i>
+                </a>
+                <a href="" target="_blank" onclick="exibirTelefone()"><i class="fa fa-phone"aria-hidden="true" style="color:black"></i></a>
+            </div>
+        </div>
+</div>
+</div>
+</div>
+
+<!-- ##### Cart Start ##### -->
+<div class="py-5 text-center">
+  <img class="d-block mx-auto mb-4" src="{% static 'img/login-img/goldenComLogo.jpeg' %}" alt="" width="200" height="200">
+</div>
+
+<div class="container">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Produto</th>
+        <th scope="col">Data de lançamento</th>
+        <th scope="col">Informações</th>
+        <th scope="col">Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row" id="produto_tab"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td scope="row" id="produto2_tab"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td scope="row" id="produto3_tab"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="contact-area section-padding-0-80">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                        
+                            <div class="col-12 col-lg-12 ">
+                            <label for="cep"><b>CEP DE ENTREGA</b></label>
+                                <input type="text" id="cep" class="form-control" name="cep" placeholder="00000-000">
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn btn-success" type="submit" onclick="window.location.href='http://localhost:8000/pagamento'">CONFIRMAR COMPRA</button>
+                                <button type="button" class="btn btn-primary" onclick="window.location.href='http://localhost:8000'">CONTINUAR COMPRANDO</button>
+                            </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'partials/_footer.html' %}
+{% endblock %}

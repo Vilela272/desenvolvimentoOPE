@@ -132,3 +132,9 @@ def cria_dados(request):
 
 def enviar_email(request):
     return render(request, 'usuarios/email.html')
+
+def carrinho(request):
+    return render(request, 'usuarios/carrinho.html')
+
+def pagamento(request):
+    return render(request, 'usuarios/pagamento.html')

@@ -84,7 +84,7 @@
 
                                     <li><a href="{% url 'dashboard' %}">Meus Dados <i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
 
-                                    <li><a href="#">Carrinho <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a></li>
+                                    <li><a href="{% url 'carrinho' %}">Carrinho <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a></li>
 
                                     <li><a href="{% url 'logout' %}">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 
@@ -97,6 +97,8 @@
                                     <li><a href="{% url 'cadastro' %}">Cadastro <i class="fa fa-registered" aria-hidden="true"></i></a></li>
 
                                     <li><a href="{% url 'login' %}">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+
+                                    <li><a href="{% url 'carrinho' %}">Carrinho <i class="fa fa-paw" aria-hidden="true"></i></a></li>
                                     {% endif %}
                                 </ul>
 

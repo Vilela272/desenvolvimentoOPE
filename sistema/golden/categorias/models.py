@@ -1,5 +1,7 @@
 from django.db import models
 
+
+
 # Create your models here.
 class Categorias(models.Model):
     nome_categoria = models.CharField('Categoria', max_length=50, unique=True, blank=False, null=False, choices=(

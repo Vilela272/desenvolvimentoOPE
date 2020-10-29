@@ -1,0 +1,32 @@
+.container{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1080px;
+    margin-top: 90px;
+}
+
+.dados_informacoes{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1080px;
+    margin-top: 90px;
+}
+
+.status_produto {
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.status {
+    background-color: #7E459B;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    width: 20%;
+}
+
+.copyright {
+    color: black;
+    margin-top: 50px;
+    text-align: center;
+}

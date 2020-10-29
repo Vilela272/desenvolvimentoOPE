@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'goldenbear.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'golden_sistema',
-        'USER': 'vilela',
-        'PASSWORD': '123456',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
         "HOST": 'localhost'
     }
 }
