@@ -21,3 +21,34 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.nome_produto
+
+
+class Pedido(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField('Status', max_length=50, unique=True, blank=False, null=False, 
+    choices=(
+        ('Carrinho', 'Carrinho'),
+        ('Finalizado', 'Finalizado'),
+        ('Pago', 'Pago'),
+        ('Aguardando Pagamento', 'Aguardando Pagamento'),
+    ))
+    data_pedido = models.DateTimeField(default=datetime.now, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Pedidos'
+    
+    def __str__(self):
+        return "Situação do pedido: " + self.status 
+
+
+class PedidoProduto(models.Model):
+    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    quantidade = models.IntegerField()
+
+    class Meta:
+        verbose_name_plural = 'Pedido produtos'
+    
+    def __str__(self):
+        return "Pedido Produtos" 

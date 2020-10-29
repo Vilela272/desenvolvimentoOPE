@@ -1,0 +1,34 @@
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding-0-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="contact-form-area">
+          <center>
+            <img
+              src="{% static 'img/bg-img-error/404.gif' %}"
+              height="500"
+              width="800"
+              alt=""
+            />
+          </center>
+          <div class="col-12 text-center">
+            <button
+              class="btn btn-outline-dark border border-dark btn-block"
+              type="button"
+              onclick="exibirTelaHome()"
+            >
+              Voltar para a págna principal
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function exibirTelaHome() {
+    location.href = "{% url 'index' %}";
+  }
+</script>

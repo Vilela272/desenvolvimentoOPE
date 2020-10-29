@@ -1,84 +1,114 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %} 
 
-{% include 'partials/_busca.html' %}
-
+{% include 'partials/_busca.html' %} 
 {% include 'partials/_menu.html' %}
-
 
 <!-- ##### Contact Form Area Start ##### -->
 <div class="contact-area section-padding-0-80">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="contact-form-area">
-                    <form action="{% url 'login' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="alert alert-success text-dark" role="alert">
-                            <h4 class="alert-heading">Prezados, bem-vindos! Realizem o seu
-                                <i class="fa fa-sign-in" aria-hidden="true"></i> 
-                                    Login no site da GOLDEN BEAR COMPANY <i class="fa fa-registered" aria-hidden="true">
-                                </i>
-                            </h4>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="contact-form-area">
+          <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <div class="alert alert-success text-dark" role="alert">
+              <h4 class="alert-heading text-center">
+                Realize o seu
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
+                Login no site da GOLDEN BEAR COMPANY
+                <i class="fa fa-registered" aria-hidden="true"> </i>
+              </h4>
 
-                            <p style="color:black">A sua loja digital, personalizada da GOLDEN BEAR COMPANY, onde você encontrará camisas, 
-                                calças, blusas, acessórios, bonés e chaveiros, fique a vontade para entrar em contato conosco! 
-                            </p>
+              <p style="color: black;">
+                A sua loja digital e personalizada da GOLDEN BEAR COMPANY. Aqui
+                você encontrará camisas, calças, blusas, acessórios, bonés e
+                chaveiros. Fique à vontade para entrar em contato conosco!
+              </p>
 
-                            <hr/>
-                            
-                            <p class="mb-0" style="color:black">INFORMAÇÃO!!! Todos os dados a seguir 
-                                serão obrigatórios para realizar login no site da GOLDEN BEAR COMPANY 
-                                <i class="fa fa-paw" aria-hidden="true"></i></p>
-                        </div>
-                        {% include 'partials/_alertas.html' %}
-                        <div class="row">
+              <hr />
 
-                            <div class="col-12 col-lg-12 ">
-                                <label for="email"><b>Email <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></b></label>
-                                <input type="text" id="email" class="form-control border border-dark rounded" name="email" placeholder="Entre com o email ou usuário cadastrado">
-                            </div>
-                
-                            <div class="col-12 col-lg-12">
-                                <label for="senha"><b>Senha <i class="fa fa-key fa-fw" aria-hidden="true"></i></b></label>
-                                <input id="senha" type="password" class="form-control border border-dark rounded" name="senha" placeholder="Digite aqui sua senha">
-                            </div>
-
-                            <div class="form-group col-12 col-lg-12">
-                                <div class="form-check mb-2">
-                                  <input class="form-check-input" type="checkbox" id="autoSizingCheck">
-                                  <label class="form-check-label" for="autoSizingCheck">
-                                    Lembre-me
-                                  </label>
-                                </div>
-                            </div>
-
-                            <div class="col-12 text-center">
-                                <button class="btn btn-outline-dark border border-dark btn-block" type="submit">Acessar sua conta</button>
-                                <button class="btn btn-outline-dark border border-dark btn-block" type="button" onclick="exibirCriarConta()">Ainda não tem conta? Clique aqui</button>
-                                <button class="btn btn-outline-dark border border-dark btn-block" type="button" onclick="exibirRecuperarSenha()">Recuperar senha</button>   
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
+              <p class="mb-0" style="color: black;">
+                Todos os dados a seguir serão obrigatórios para realizar login
+                no site da GOLDEN BEAR COMPANY
+                <i class="fa fa-paw" aria-hidden="true"></i>
+              </p>
             </div>
+            {% include 'partials/_alertas.html' %}
+            <div class="row">
+              <div class="col-12 col-lg-12">
+                <label for="email"
+                  ><b>Email
+                    <i
+                      class="fa fa-envelope"
+                      style="color: black;"
+                      aria-hidden="true"
+                    ></i></b
+                ></label>
+                <input
+                  type="text"
+                  id="email"
+                  class="form-control border border-dark rounded"
+                  name="email"
+                  placeholder="Entre com o email. EX: caio@gmail.com"
+                  required="True"
+                />
+              </div>
+
+              <div class="col-12 col-lg-12">
+                <label for="senha"
+                  ><b>
+                    Senha <i class="fa fa-key fa-fw" aria-hidden="true"></i></b
+                ></label>
+                <input
+                  id="senha"
+                  type="password"
+                  class="form-control border border-dark rounded"
+                  name="senha"
+                  placeholder="Digite aqui sua senha"
+                  required="True"
+                />
+              </div>
+
+              <div class="col-12 text-center">
+                <button
+                  class="btn btn-outline-dark border border-dark btn-block"
+                  type="submit"
+                >
+                  Acessar sua conta
+                </button>
+                <button
+                  class="btn btn-outline-dark border border-dark btn-block"
+                  type="button"
+                  onclick="exibirCriarConta()"
+                >
+                  Ainda não tem conta? Clique aqui
+                </button>
+                <button
+                  class="btn btn-outline-dark border border-dark btn-block"
+                  type="button"
+                  onclick="exibirRecuperarSenha()"
+                >
+                  Recuperar senha
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
-function exibirCriarConta()
-{
-     location.href = "{% url 'cadastro' %}";
-}
+  function exibirCriarConta() {
+    location.href = "{% url 'cadastro' %}";
+  }
 
-function exibirRecuperarSenha()
-{
-     location.href = "{% url 'password_reset' %}";
-}
+  function exibirRecuperarSenha() {
+    location.href = "{% url 'password_reset' %}";
+  }
 </script>
 
-{% include 'partials/_footer.html' %}
-{% endblock %}
+{% include 'partials/_footer.html' %} {% endblock %}

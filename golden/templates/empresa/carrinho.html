@@ -1,90 +1,119 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} 
+{% load static %} {% block content %} 
 
-{% include 'partials/_busca.html' %}
-
+{% include 'partials/_busca.html' %} 
 {% include 'partials/_menu.html' %}
 
 <!-- ##### Contact Form Area Start ##### -->
 <div class="contact-area section-padding-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="alert alert-success text-dark" role="alert">
+          <h4 class="alert-heading text-center">
+            Prezado, {{ user.first_name }} {{ user.last_name }}!
+          </h4>
 
-                <div class="alert alert-success text-dark" role="alert">
+          <h4 class="alert-heading">
+            Visualize seus produtos adicionados ao carrinho do site da GOLDEN
+            BEAR COMPANY <i class="fa fa-registered" aria-hidden="true"></i>
+          </h4>
 
-                    <h4 class="alert-heading text-center">Prezado, {{ user.first_name }} {{ user.last_name }}!</h4> 
-                    
-                    <h4 class="alert-heading">Visualize seus produtos adicionados ao carrinho do site da GOLDEN BEAR COMPANY 
-                        <i class="fa fa-registered" aria-hidden="true"></i></h4>
+          <p style="color: black;">
+            A sua loja digital, personalizada da GOLDEN BEAR COMPANY, onde você
+            encontrará camisas, calças, blusas, acessórios, bonés e chaveiros,
+            fique a vontade para entrar em contato conosco!
+          </p>
 
-                    <p style="color:black">A sua loja digital, personalizada da GOLDEN BEAR COMPANY, onde você encontrará camisas, 
-                        calças, blusas, acessórios, bonés e chaveiros, fique a vontade para entrar em contato conosco! 
-                    </p>
+          <hr />
 
-                    <hr/>
-                    
-                    <p class="mb-0" style="color:black">Abaixo a tabela com os produtos em que você adicionou ao carrinho. Ao confirmar a compra
-                        você será redirecionado para confirma o seu endereço de entrega e opções de pagamento.
-                    </p>
-                </div>
-
-                {% include 'partials/_alertas.html' %}
-                <div class="contact-form-area">
-                    <form action="{% url 'cadastro' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="rounded table table-striped border border-dark ">
-                                    <thead class="rounded thead-dark">
-                                    <tr class="rounded">
-                                        <th scope="col">Código</th>
-                                        <th scope="col">Produto</th>
-                                        <th scope="col">Valor Unitário</th>
-                                        <th scope="col">Quantidade</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">#001</th>
-                                        <td>Camisa Azul</td>
-                                        <td>59,90</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">#002</th>
-                                        <td>Pulseira de Ouro</td>
-                                        <td>299,99</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">#003</th>
-                                        <td>Jaqueta de Couro</td>
-                                        <td>499,00</td>
-                                        <td>1</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="classynav col-12 text-center">
-                                <button class="btn btn-outline-dark border border-dark rounded btn-block" 
-                                type="submit">Confirmar compra <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            </button>
-
-                                <button class="btn btn-outline-dark border border-dark btn-block" 
-                                type="button">continuar comprando</button>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
+          <p class="mb-0" style="color: black;">
+            Abaixo a tabela com os produtos em que você adicionou ao carrinho.
+            Ao confirmar a compra você será redirecionado para confirma o seu
+            endereço de entrega e opções de pagamento.
+          </p>
         </div>
+
+        {% include 'partials/_alertas.html' %} 
+
+        {% if carrinho %} 
+        {% for pedido, itens in carrinho %}
+        <div class="contact-form-area">
+          <form action="{% url 'cadastro' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-12">
+                <table class="rounded table table-striped border border-dark text-center">
+                  <thead class="rounded thead-dark text-center">
+                    <tr class="rounded">
+                      <th scope="col">Código</th>
+                      <th scope="col">Produto</th>
+                      <th scope="col">Descrição</th>
+                      <th scope="col">Data do Produto</th>
+                      <th scope="col">Valor Unitário</th>
+                      <th scope="col">Quantidade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">{{ PedidoProduto.pedido.id }}</th>
+                      <td>Camisa Azul</td>
+                      <td>Informações sobre a camisa azul</td>
+                      <td>10 de Outubro de 2020 às 14:41</td>
+                      <td>59,90</td>
+                      <td>{{ PedidoProduto.pedido.quantidade }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="classynav col-12 text-center">
+                <button
+                  class="btn btn-outline-dark border border-dark rounded btn-block"
+                  type="submit">
+                  Confirmar compra
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                </button>
+
+                <button
+                  class="btn btn-outline-dark border border-dark btn-block"
+                  type="button"
+                  onclick="exibirTelaHome()">
+                  continuar comprando
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        {% endfor %} 
+          {% else %}
+          <center align="center">
+            <br /><br /><br />
+            <img
+              src="{% static 'img/bg-carrinho/carrinhoVazio.png' %}"
+              width="500"
+              height="100"
+              alt=""
+            />
+
+            <img
+              src="{% static 'img/bg-carrinho/carrinhoVazio.jpg' %}"
+              width="550"
+              height="100"
+              alt=""
+            />
+          </center>
+        {% endif %}
+      </div>
     </div>
+  </div>
 </div>
 
-
-{% include 'partials/_footer.html' %}
+<script>
+  function exibirTelaHome() {
+    location.href = "{% url 'index' %}";
+  }
+</script>
+{% include 'partials/_footer.html' %} 
 {% endblock %}
+

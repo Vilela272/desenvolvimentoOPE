@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'usuarios',
     'categorias',
     'golden',
+    'pagamentos',
     'ajax_select',
 ]
 
@@ -147,13 +148,14 @@ MESSAGE_TAGS = {
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, '../apps'))
 
-
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
-
 # if DEBUG:
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # During development only
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'guilhermevm99@gmail.com'
-EMAIL_HOST_PASSWORD = '2105guI*'
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PWD')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# EMAIL_HOST_USER = 'guilhermevilelamoreirav@gmail.com'
+# EMAIL_HOST_PASSWORD = '2107guI*'
