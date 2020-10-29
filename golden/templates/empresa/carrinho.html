@@ -1,17 +1,13 @@
 {% extends 'base.html' %} 
-{% load static %} 
-{% block content %} 
+{% load static %} {% block content %} 
 
 {% include 'partials/_busca.html' %} 
-
 {% include 'partials/_menu.html' %}
 
 <!-- ##### Contact Form Area Start ##### -->
 <div class="contact-area section-padding-0">
   <div class="container">
     <div class="row">
-      {% if produtos %} 
-      {% for produto in produtos %}
       <div class="col-12">
         <div class="alert alert-success text-dark" role="alert">
           <h4 class="alert-heading text-center">
@@ -38,16 +34,16 @@
           </p>
         </div>
 
-        {% include 'partials/_alertas.html' %}
+        {% include 'partials/_alertas.html' %} 
 
+        {% if carrinho %} 
+        {% for pedido, itens in carrinho %}
         <div class="contact-form-area">
           <form action="{% url 'cadastro' %}" method="POST">
             {% csrf_token %}
             <div class="row">
               <div class="col-12">
-                <table
-                  class="rounded table table-striped border border-dark text-center"
-                >
+                <table class="rounded table table-striped border border-dark text-center">
                   <thead class="rounded thead-dark text-center">
                     <tr class="rounded">
                       <th scope="col">Código</th>
@@ -60,28 +56,12 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row">#001</th>
+                      <th scope="row">{{ PedidoProduto.pedido.id }}</th>
                       <td>Camisa Azul</td>
                       <td>Informações sobre a camisa azul</td>
                       <td>10 de Outubro de 2020 às 14:41</td>
                       <td>59,90</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">#002</th>
-                      <td>Pulseira de Ouro</td>
-                      <td>Informações sobre a pulseira de ouro</td>
-                      <td>30 de Janeiro de 2020 às 14:41</td>
-                      <td>299,99</td>
-                      <td>10</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">#003</th>
-                      <td>Jaqueta de Couro</td>
-                      <td>Informações sobre a Jaqueta de couro</td>
-                      <td>20 de Julho de 2020 às 14:41</td>
-                      <td>499,00</td>
-                      <td>1</td>
+                      <td>{{ PedidoProduto.pedido.quantidade }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -90,8 +70,7 @@
               <div class="classynav col-12 text-center">
                 <button
                   class="btn btn-outline-dark border border-dark rounded btn-block"
-                  type="submit"
-                >
+                  type="submit">
                   Confirmar compra
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 </button>
@@ -99,33 +78,33 @@
                 <button
                   class="btn btn-outline-dark border border-dark btn-block"
                   type="button"
-                  onclick="exibirTelaHome()"
-                >
+                  onclick="exibirTelaHome()">
                   continuar comprando
                 </button>
               </div>
             </div>
           </form>
         </div>
-      </div>
-      {% endfor %} {% else %}
-        <center align="center">
-          <br><br><br>
+        {% endfor %} 
+          {% else %}
+          <center align="center">
+            <br /><br /><br />
             <img
-            src="{% static 'img/bg-carrinho/carrinhoVazio.png' %}"
-            width="580"
-            height="100"
-            alt=""
+              src="{% static 'img/bg-carrinho/carrinhoVazio.png' %}"
+              width="500"
+              height="100"
+              alt=""
             />
 
             <img
-                src="{% static 'img/bg-carrinho/carrinhoVazio.jpg' %}"
-                width="550"
-                height="100"
-                alt=""
-                />
-        </center>
+              src="{% static 'img/bg-carrinho/carrinhoVazio.jpg' %}"
+              width="550"
+              height="100"
+              alt=""
+            />
+          </center>
         {% endif %}
+      </div>
     </div>
   </div>
 </div>
@@ -137,3 +116,4 @@
 </script>
 {% include 'partials/_footer.html' %} 
 {% endblock %}
+

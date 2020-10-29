@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages, sessions
 from django.http import HttpResponse
 from .forms import UserForm, UserProfile, UserProfileForm
-from golden.models import PedidoProduto, Pedido, Produto
+from golden.models import Produto
 
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
@@ -126,15 +126,6 @@ def logout(request):
     """
     auth.logout(request)
     return redirect('login')
-
-
-def carrinho(request):
-    """
-    Função que verifica se o usuário está logado, e pode acessar o carrinho de compras
-    """
-    if request.user.is_authenticated:
-        return render(request, 'empresa/carrinho.html')
-    return redirect('produto')
 
 
 def campo_vazio(campo):

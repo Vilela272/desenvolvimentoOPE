@@ -14,14 +14,17 @@ class ListandoProdutos(admin.ModelAdmin):
     list_per_page = 4
 
 class ListandoPedidos(admin.ModelAdmin):
-    list_display = ('usuario', 'status', 'data_pedido')
-    list_display_links = ('data_pedido', )
+    list_display = ('id', 'usuario', 'status', 'data_pedido')
+    list_display_links = ('id', 'data_pedido', )
+    list_editable = ('status', )
+    list_filter = ('usuario', 'status', )
     list_per_page = 4
 
 class ListandoPedidosProdutos(admin.ModelAdmin):
-    list_display = ('pedido', 'produto', 'quantidade')
-    list_display_links = ('pedido', )
-    list_per_page = 4
+    list_display = ('id', 'pedido', 'produto', 'quantidade', 'usuario')
+    list_display_links = ('id', 'produto', 'pedido' )
+    list_filter = ('usuario', )
+    list_per_page = 20
 
 
 admin.site.register(Produto, ListandoProdutos)

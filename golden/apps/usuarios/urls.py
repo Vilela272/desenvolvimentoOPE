@@ -13,6 +13,5 @@ urlpatterns = [
     path('cadastro', views.cadastro, name='cadastro'),
     path('meus_dados', views.meus_dados, name='meus_dados'),
     path('login', views.login, name='login'),
-    path('logout', views.logout, name='logout'),
-    path('carrinho/', views.carrinho, name='carrinho')
+    path('logout', views.logout, name='logout')
 ]

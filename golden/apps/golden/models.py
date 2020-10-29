@@ -36,18 +36,19 @@ class Pedido(models.Model):
 
     class Meta:
         verbose_name_plural = 'Pedidos'
-
+    
     def __str__(self):
-        return self.usuario + self.status
+        return "Situação do pedido: " + self.status 
 
 
 class PedidoProduto(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     quantidade = models.IntegerField()
 
     class Meta:
         verbose_name_plural = 'Pedido produtos'
-
+    
     def __str__(self):
-        return self.pedido + self.produto
+        return "Pedido Produtos" 
