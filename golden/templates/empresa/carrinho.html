@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="alert alert-success text-dark" role="alert">
+        <div class="alert alert-success text-dark border border-dark" role="alert">
           <h4 class="alert-heading text-center">
             Prezado, {{ user.first_name }} {{ user.last_name }}!
           </h4>
@@ -93,21 +93,32 @@
             </div>
           </form>
           {% else %}
-            <center align="center">
-              <img
-                src="{% static 'img/bg-carrinho/carrinhoVazio.png' %}"
-                width="415"
-                height="100"
-                alt=""
-              />
-      
-              <img
-                src="{% static 'img/bg-carrinho/carrinhoVazio.png' %}"
-                width="550"
-                height="100"
-                alt=""
-              />
-            </center>
+            <div class="alert alert-danger text-dark border border-dark" role="alert">    
+              <h4 class="alert-heading">
+                No momento você não possui nenhum produto adicionado ao seu carrinho do site da GOLDEN
+                BEAR COMPANY <i class="fa fa-registered" aria-hidden="true"></i>
+              </h4>
+    
+              <p style="color: black;">
+                A sua loja digital, personalizada da GOLDEN BEAR COMPANY, onde você
+                encontrará camisas, calças, blusas, acessórios, bonés e chaveiros,
+                fique a vontade para entrar em contato conosco!
+              </p>
+    
+              <hr />
+    
+              <p class="mb-0" style="color: black;">
+                Para facilitar sua navegação dentro do site, você pode clicar no link a seguir e ir para o menu, 
+                e adicionar um produto ao seu carrinho
+                <a href="{% url 'index' %}">
+                  <button
+                    class="btn btn-outline-dark btn-link"
+                    type="submit"
+                  >Clique aqui
+                  </button>
+                </a>
+              </p>
+            </div>
           {% endif %}
         </div>
       </div>

@@ -52,6 +52,12 @@ def sobre(request):
 
 
 def carrinho(request):
+    """
+    Função do carrinho de compras.
+    Verifica se o usuário esta logado no site.
+    Se estiver é possível adicionar produtos ao seu carrinho e vê-los.
+    Se não ele é redirecionado para a página de login
+    """
     if request.user.is_authenticated:
     
         if not request.user.is_authenticated:

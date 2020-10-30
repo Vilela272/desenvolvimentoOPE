@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="alert alert-success text-dark" role="alert">
+        <div class="alert alert-success text-dark border border-dark" role="alert">
           <h4 class="alert-heading text-center">
             Crie sua conta no site da GOLDEN BEAR COMPANY
             <i class="fa fa-registered" aria-hidden="true"></i>
@@ -132,6 +132,14 @@
                   data-monitor-id="password-strength-monitor"
                   required
                 />
+              </div>
+
+              <div class="col-12 col-lg-12">
+                {% for field in form %}
+                {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+                {% endfor %}
+                {% endfor %}
               </div>
 
               <div class="classynav col-12 text-center">
