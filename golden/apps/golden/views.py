@@ -79,7 +79,10 @@ def carrinho(request):
             pedido.save()
             item.save()
         
-        pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+        try:
+            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+        except Pedido.DoesNotExist:
+            pedido = Pedido(usuario=request.user, status="Carrinho")
         
         dados = {
             'pedido': pedido,
