@@ -25,7 +25,7 @@ class Produto(models.Model):
 
 class Pedido(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    status = models.CharField('Status', max_length=50, unique=True, blank=False, null=False, 
+    status = models.CharField('Status', max_length=50, blank=False, null=False, 
     choices=(
         ('Carrinho', 'Carrinho'),
         ('Finalizado', 'Finalizado'),
@@ -44,7 +44,6 @@ class Pedido(models.Model):
 class PedidoProduto(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     quantidade = models.IntegerField()
 
     class Meta:

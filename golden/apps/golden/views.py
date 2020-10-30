@@ -53,34 +53,36 @@ def sobre(request):
 
 def carrinho(request):
     if request.user.is_authenticated:
-        return render(request, 'empresa/carrinho.html')
-
-        if request.method != 'POST':
-            return render(request, 'produtos/produto.html')
     
         if not request.user.is_authenticated:
             return render(request, 'usuarios/login.html')
-        id_produto = request.POST['produto']
         
-        try:
-            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
-        except Pedido.DoesNotExist:
-            pedido = Pedido(usuario=request.user, status="Carrinho")
+        if request.method == 'POST':
+            id_produto = request.POST['produto']
+            produto = Produto.objects.get(id=id_produto)
+            quantidade = request.POST['quantidade']
+        
+            try:
+                pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+            except Pedido.DoesNotExist:
+                pedido = Pedido(usuario=request.user, status="Carrinho")
 
-        produto = Produto.objects.get(id=id_produto)
-        quantidade = request.POST['quantidade']
+            try:
+                item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
+            except PedidoProduto.DoesNotExist:
+                item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
         
-        try:
-            item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
-        except PedidoProduto.DoesNotExist:
-            item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
+            if quantidade == '':
+                quantidade = 1
         
-        item.quantidade += int(quantidade)
-        pedido.save()
-        item.save()
+            item.quantidade += int(quantidade)
+            pedido.save()
+            item.save()
+        
+        pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
         
         dados = {
-            'pedido': Pedido,
+            'pedido': pedido,
             'itens': PedidoProduto.objects.filter(pedido=pedido)
         }
         
@@ -89,3 +91,47 @@ def carrinho(request):
     messages.error(
                 request, 'Desculpe! Mas você só pode inserir um produto ao carrinho se estiver logado.')
     return redirect('login')
+
+
+"""
+def remover_produto(request):
+    if request.user.is_authenticated:
+    
+        if not request.user.is_authenticated:
+            return render(request, 'usuarios/login.html')
+        
+        if request.method == 'POST':
+            id_produto = request.POST['produto']
+            produto = Produto.objects.get(id=id_produto)
+            quantidade = request.POST['quantidade']
+        
+            try:
+                pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+            except Pedido.DoesNotExist:
+                pedido = Pedido(usuario=request.user, status="Carrinho")
+
+            try:
+                item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
+            except PedidoProduto.DoesNotExist:
+                item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
+        
+            if quantidade == '':
+                quantidade = 1
+        
+            item.quantidade += int(quantidade)
+            pedido.save()
+            item.save()
+        
+        pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+        
+        dados = {
+            'pedido': pedido,
+            'itens': PedidoProduto.objects.filter(pedido=pedido)
+        }
+        
+        return render(request, 'empresa/carrinho.html', dados)
+    
+    messages.error(
+                request, 'Desculpe! Mas você só pode inserir um produto ao carrinho se estiver logado.')
+    return redirect('login')
+"""

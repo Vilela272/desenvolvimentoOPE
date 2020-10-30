@@ -36,8 +36,6 @@
 
         {% include 'partials/_alertas.html' %} 
 
-        {% if carrinho %} 
-        {% for pedido, itens in carrinho %}
         <div class="contact-form-area">
           <form action="{% url 'cadastro' %}" method="POST">
             {% csrf_token %}
@@ -49,20 +47,26 @@
                       <th scope="col">Código</th>
                       <th scope="col">Produto</th>
                       <th scope="col">Descrição</th>
-                      <th scope="col">Data do Produto</th>
                       <th scope="col">Valor Unitário</th>
                       <th scope="col">Quantidade</th>
+                      <th scope="col">Remover Produto</th>
                     </tr>
                   </thead>
                   <tbody>
+                    {% for itemPedido in itens %}
                     <tr>
-                      <th scope="row">{{ PedidoProduto.pedido.id }}</th>
-                      <td>Camisa Azul</td>
-                      <td>Informações sobre a camisa azul</td>
-                      <td>10 de Outubro de 2020 às 14:41</td>
-                      <td>59,90</td>
-                      <td>{{ PedidoProduto.pedido.quantidade }}</td>
+                      <th scope="row">#00{{ itemPedido.id }}</th>
+                      <td>{{ itemPedido.produto.nome_produto }}</td>
+                      <td>{{ itemPedido.produto.descricao }}</td>
+                      <td>{{ itemPedido.produto.preco }}</td>
+                      <td>{{ itemPedido.quantidade }}</td>
+                      <td><button
+                        class="btn btn-outline-dark btn-link"
+                        type="submit"
+                      >Remover
+                      </button></td>
                     </tr>
+                    {% endfor %} 
                   </tbody>
                 </table>
               </div>
@@ -85,25 +89,6 @@
             </div>
           </form>
         </div>
-        {% endfor %} 
-          {% else %}
-          <center align="center">
-            <br /><br /><br />
-            <img
-              src="{% static 'img/bg-carrinho/carrinhoVazio.png' %}"
-              width="500"
-              height="100"
-              alt=""
-            />
-
-            <img
-              src="{% static 'img/bg-carrinho/carrinhoVazio.jpg' %}"
-              width="550"
-              height="100"
-              alt=""
-            />
-          </center>
-        {% endif %}
       </div>
     </div>
   </div>

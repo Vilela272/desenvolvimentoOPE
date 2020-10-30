@@ -43,23 +43,25 @@
                 <p align="justify" style="color: black;">
                   Valor do produto: {{ produto.preco }}
                 </p>
-
+                <form action="{% url 'carrinho' %}" method="POST">
+                {% csrf_token %}
                 <div class="form-group">
                   <input
                     class="form-control border border-dark"
                     name="quantidade"
+                    id="quantidade"
                     type="number"
                     title="Quantidade de unidades"
                     placeholder="Selecione a quantidade desejada"
                   />
                 </div>
-                <form action="{% url 'carrinho' %}" method="POST">
-                  {% csrf_token %}
+                
                   <p align="justify">
                     <button
                       class="btn btn-outline-dark border border-dark btn-block"
                       type="submit"
                     >
+                    <input type="hidden" id="produto" name="produto" value="{{ produto.id }}"/>
                       Adicionar ao carrinho
                       <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                     </button>
