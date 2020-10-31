@@ -9,20 +9,18 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
+
         <div class="alert alert-success text-dark border border-dark" role="alert">
           <h4 class="alert-heading text-center">
             Crie sua conta no site da GOLDEN BEAR COMPANY
             <i class="fa fa-registered" aria-hidden="true"></i>
           </h4>
-
           <p style="color: black;">
             A sua loja digital e personalizada da GOLDEN BEAR COMPANY. Aqui você
             encontrará camisas, calças, blusas, acessórios, bonés e chaveiros.
             Fique à vontade para entrar em contato conosco!
           </p>
-
           <hr />
-
           <p class="mb-0" style="color: black;">
             Todos os dados a seguir serão obrigatórios para realizar o cadastro
             no site da GOLDEN BEAR COMPANY
@@ -32,19 +30,25 @@
 
         {% include 'partials/_alertas.html' %}
         <div class="contact-form-area">
-          <form action="{% url 'cadastro' %}" method="POST">
+          <form action="{% url 'cadastro' %}" method="POST" data-toggle="validator" role="form">
             {% csrf_token %}
-            <div class="row">
-              <div class="col-12 col-lg-12">
-                <label for="username"
+
+            <div class="row form-group">
+
+              <div class="col-12 col-lg-12 ">
+                <label for="username "
                   ><b>Usuário
                     <i class="fa fa-user-plus" aria-hidden="true"></i></b
                 ></label>
                 <input
                   type="text"
-                  class="form-control border border-dark rounded"
+                  class="form-control is-valid border border-dark rounded"
                   name="username"
-                  placeholder="Ex.:Caio Henrique"
+                  id="username"
+                  placeholder="Digite um usuário..."
+                  data-error="Por favor, informe um outro usuário."
+                  maxlength="50"
+                  style="color: #000"
                   required
                 />
               </div>
@@ -55,9 +59,11 @@
                 ></label>
                 <input
                   type="text"
-                  class="form-control border border-dark rounded"
+                  class="form-control is-valid border border-dark rounded"
                   name="nome"
-                  placeholder="Ex.:Caio"
+                  id="nome"
+                  placeholder="Digite seu nome..."
+                  data-error="Por favor, informe um outro usuário."
                   required
                 />
               </div>
@@ -69,23 +75,25 @@
                 ></label>
                 <input
                   type="text"
-                  class="form-control border border-dark rounded"
+                  class="form-control is-valid border border-dark rounded"
                   name="sobrenome"
-                  placeholder="Ex.:Henrique"
+                  id="sobrenome"
+                  placeholder="Digite seu sobrenome..."
                   required
                 />
               </div>
 
-              <div class="col-12 col-lg-6">
+              <div class="col-12 col-lg-6 ">
                 <label for="email"
                   ><b>Email
                     <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></b
                 ></label>
                 <input
                   type="email"
-                  class="form-control border border-dark rounded"
+                  class="form-control is-valid border border-dark rounded"
                   name="email"
-                  placeholder="Ex.: caio@gmail.com"
+                  id="email"
+                  placeholder="Digite o seu email..."
                   required
                 />
               </div>
@@ -99,26 +107,30 @@
                   type="email"
                   class="form-control border border-dark rounded"
                   name="email2"
-                  placeholder="Ex.: caio@gmail.com"
+                  id="email2"
+                  placeholder="Confirme o seu e-mail..."
                   required
                 />
               </div>
 
-              <div class="col-12 col-lg-6">
-                <label for="password"
+              <div class="col-12 col-lg-6 form-group ">
+                <label for="password" class="control-label"
                   ><b>Senha <i class="fa fa-key fa-fw" aria-hidden="true"></i></b
                 ></label>
                 <input
                   type="password"
-                  class="form-control border border-dark rounded"
+                  class="form-control is-valid border border-dark rounded"
                   name="password"
-                  placeholder="Digite sua senha"
+                  id="password"
+                  placeholder="Digite sua senha..."
+                  data-minlength="6"
                   required
                 />
+                <span class="help-block">Mínimo de seis (6) digitos</span><br>
               </div>
 
-              <div class="col-12 col-lg-6 input-group col-md-4 f-left">
-                <label for="password2"
+              <div class="col-12 col-lg-6 input-group col-md-4 f-left form-group">
+                <label for="password2" class="control-label"
                   ><b>Confirmação de senha
                     <i class="fa fa-key fa-fw" aria-hidden="true"></i></b
                 ></label>
@@ -126,23 +138,28 @@
                   type="password"
                   class="form-control border border-dark rounded"
                   name="password2"
-                  placeholder="Digite sua senha mais uma vez"
-                  id="user_password2"
+                  id="password2"
+                  placeholder="Confirme sua senha..."
                   data-component="password-strength"
                   data-monitor-id="password-strength-monitor"
+                  data-minlength="6"
+                  data-match="#password"
+                  data-match-error="Atenção! As senhas não estão iguais."
                   required
                 />
+                <span class="help-block">Mínimo de seis (6) digitos!</span> <br>
               </div>
 
-              <div class="col-12 col-lg-12">
-                {% for field in form %}
-                {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
-                {% endfor %}
-                {% endfor %}
+              <div class="col-12 col-lg-6 input-group col-md-4 f-left form-group">
+                <div class="checkbox">	    
+                  <label>	      
+                    <input type="checkbox" data-error="Você deve marcar este campo!" required> Marque este item.	    
+                  </label>
+                  <div class="help-block with-errors"></div>	  
+                </div>
               </div>
 
-              <div class="classynav col-12 text-center">
+              <div class="classynav col-12 text-center form-group">
                 <button
                   class="btn btn-outline-dark border border-dark rounded btn-block"
                   type="submit"

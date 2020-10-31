@@ -59,79 +59,28 @@ def carrinho(request):
     Se não ele é redirecionado para a página de login
     """
     if request.user.is_authenticated:
-    
-        if not request.user.is_authenticated:
-            return render(request, 'usuarios/login.html')
-        
-        if request.method == 'POST':
-            id_produto = request.POST['produto']
-            produto = Produto.objects.get(id=id_produto)
-            quantidade = request.POST['quantidade']
-        
-            try:
-                pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
-            except Pedido.DoesNotExist:
-                pedido = Pedido(usuario=request.user, status="Carrinho")
 
-            try:
-                item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
-            except PedidoProduto.DoesNotExist:
-                item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
-        
-            if quantidade == '':
-                quantidade = 1
-        
-            item.quantidade += int(quantidade)
-            pedido.save()
-            item.save()
-        
         try:
             pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
         except Pedido.DoesNotExist:
             pedido = Pedido(usuario=request.user, status="Carrinho")
         
-        dados = {
-            'pedido': pedido,
-            'itens': PedidoProduto.objects.filter(pedido=pedido)
-        }
-        
-        return render(request, 'empresa/carrinho.html', dados)
-    
-    messages.error(
-                request, 'Desculpe! Mas você só pode inserir um produto ao carrinho se estiver logado.')
-    return redirect('login')
-
-
-"""
-def remover_produto(request):
-    if request.user.is_authenticated:
-    
-        if not request.user.is_authenticated:
-            return render(request, 'usuarios/login.html')
-        
         if request.method == 'POST':
             id_produto = request.POST['produto']
             produto = Produto.objects.get(id=id_produto)
             quantidade = request.POST['quantidade']
-        
-            try:
-                pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
-            except Pedido.DoesNotExist:
-                pedido = Pedido(usuario=request.user, status="Carrinho")
+
+            if quantidade == '':
+                quantidade = 1
 
             try:
                 item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
             except PedidoProduto.DoesNotExist:
                 item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
-        
-            if quantidade == '':
-                quantidade = 1
-        
-            item.quantidade += int(quantidade)
+ 
+            item.quantidade = int(quantidade)
             pedido.save()
             item.save()
-        
-        pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
         
         dados = {
             'pedido': pedido,
@@ -143,4 +92,35 @@ def remover_produto(request):
     messages.error(
                 request, 'Desculpe! Mas você só pode inserir um produto ao carrinho se estiver logado.')
     return redirect('login')
-"""
+
+
+
+def remover_produto(request):
+    if request.user.is_authenticated:
+
+        if request.method == 'POST':
+            id_item = request.POST['produto']
+
+            try:
+                item = PedidoProduto.objects.get(id=id_item)
+                item.delete()
+            except PedidoProduto.DoesNotExist:
+                pass
+
+        try:
+            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+        except Pedido.DoesNotExist:
+            return render(request, 'empresa/carrinho.html')
+
+        dados = {
+            'pedido': pedido,
+            'itens': PedidoProduto.objects.filter(pedido=pedido)
+        }
+
+        return render(request, 'empresa/carrinho.html', dados)
+    
+    messages.error(
+                request, 'Desculpe! Mas não foi possível remover o produto.')
+    return redirect('login')
+
+

@@ -15,13 +15,17 @@ def cadastro(request):
     Função para realizar cadastro de um novo usuário no sistema
     """
     if request.method == 'POST':
-        usuario = request.POST['username']
+        print(request.POST)
+        usuario = request.POST.get('username', None)
+        if usuario is None:
+            return redirect('cadastro')
         nome = request.POST['nome']
         sobrenome = request.POST['sobrenome']
         email = request.POST['email']
         email2 = request.POST['email2']
         senha = request.POST['password']
         senha2 = request.POST['password2']
+
 
         if (campo_vazio(usuario) or usuario == None):
             messages.error(
