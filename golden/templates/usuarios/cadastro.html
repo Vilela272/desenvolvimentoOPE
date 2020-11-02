@@ -30,27 +30,34 @@
 
         {% include 'partials/_alertas.html' %}
         <div class="contact-form-area">
-          <form action="{% url 'cadastro' %}" method="POST" data-toggle="validator" role="form">
+          <form class="ls-form ls-form-horizontal" action="{% url 'cadastro' %}" method="POST" data-toggle="validator" role="form">
             {% csrf_token %}
 
             <div class="row form-group">
 
-              <div class="col-12 col-lg-12 ">
-                <label for="username "
-                  ><b>Usuário
-                    <i class="fa fa-user-plus" aria-hidden="true"></i></b
-                ></label>
+              <div class="col-12 col-lg-12 ls-prefix-group">
+                <label for="username" class="ls-label">
+                  <b class="ls-label-text">Usuário<i class="fa fa-user-plus" aria-hidden="true"></i></b>
+                </label>
                 <input
                   type="text"
-                  class="form-control is-valid border border-dark rounded"
+                  class="form-control is-valid border border-dark rounded formField contador caracteres"
                   name="username"
                   id="username"
-                  placeholder="Digite um usuário..."
+                  placeholder="Digite um nome de usuário..."
                   data-error="Por favor, informe um outro usuário."
-                  maxlength="50"
+                  maxlength="30"
+                  minlength="5"
+                  onkeydown="contaCaracteresUsuario(this)"
+                  onkeyup="contaCaracteresUsuario(this)"
+                  onclick="contaCaracteresUsuario(this)"
                   style="color: #000"
                   required
                 />
+                <div>
+                  <strong><p id="divmag">30 Caracteres restantes</p></strong>
+                </div>
+                
               </div>
 
               <div class="col-12 col-lg-6">
@@ -62,8 +69,10 @@
                   class="form-control is-valid border border-dark rounded"
                   name="nome"
                   id="nome"
+                  data-ls-module="charCounter"
+                  maxlength="30"
                   placeholder="Digite seu nome..."
-                  data-error="Por favor, informe um outro usuário."
+                  data-error="Por favor, informe seu nome."
                   required
                 />
               </div>
@@ -93,7 +102,9 @@
                   class="form-control is-valid border border-dark rounded"
                   name="email"
                   id="email"
+                  maxlength="80"
                   placeholder="Digite o seu email..."
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   required
                 />
               </div>
@@ -108,7 +119,9 @@
                   class="form-control border border-dark rounded"
                   name="email2"
                   id="email2"
+                  maxlength="80"
                   placeholder="Confirme o seu e-mail..."
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   required
                 />
               </div>
@@ -123,10 +136,22 @@
                   name="password"
                   id="password"
                   placeholder="Digite sua senha..."
-                  data-minlength="6"
+                  data-minlength="8"
+                  maxlength="30"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Sua senha deve conter pelo menos um número, 
+                  uma letra maiúscula, uma minúscula e pelo menos 8 ou mais caracteres"
+                  onkeydown="contaCaracteresSenha(this)"
+                  onkeyup="contaCaracteresSenha(this)"
+                  onclick="contaCaracteresSenha(this)"
                   required
                 />
-                <span class="help-block">Mínimo de seis (6) digitos</span><br>
+                <div>
+                  <strong><p id="divmagsenha">30 Caracteres restantes</p></strong>
+                </div>
+                <p style="color: black;"><strong style="color: black;">Atenção:</strong> Senha deve conter pelo menos um número, 
+                  uma letra maiúscula, uma minúscula e pelo menos oito (8) caracteres e no máximo trinta (30).
+                </p>
               </div>
 
               <div class="col-12 col-lg-6 input-group col-md-4 f-left form-group">
@@ -142,37 +167,47 @@
                   placeholder="Confirme sua senha..."
                   data-component="password-strength"
                   data-monitor-id="password-strength-monitor"
-                  data-minlength="6"
+                  data-minlength="8"
+                  maxlength="30"
                   data-match="#password"
                   data-match-error="Atenção! As senhas não estão iguais."
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Sua senha deve conter pelo menos um número, 
+                  uma letra maiúscula, uma minúscula e pelo menos 8 ou mais caracteres"
+                  onkeydown="contaCaracteresConfSenha(this)"
+                  onkeyup="contaCaracteresConfSenha(this)"
+                  onclick="contaCaracteresConfSenha(this)"
                   required
                 />
-                <span class="help-block">Mínimo de seis (6) digitos!</span> <br>
+                <div>
+                  <strong><p id="divmagconfsenha">30 Caracteres restantes</p></strong>
+                </div>
+                <p style="color: black;">
+                  <strong style="color: black;">Atenção:</strong> Senha deve conter pelo menos um número, 
+                    uma letra maiúscula, uma minúscula e pelo menos oito (8) caracteres e no máximo trinta (30).
+                </p>
               </div>
 
               <div class="col-12 col-lg-6 input-group col-md-4 f-left form-group">
                 <div class="checkbox">	    
                   <label>	      
-                    <input type="checkbox" data-error="Você deve marcar este campo!" required> Marque este item.	    
+                    <input type="checkbox" data-error="Você deve marcar este campo!" required> Marque este item, para validar o formulário de cadastro e criar sua conta.	    
                   </label>
                   <div class="help-block with-errors"></div>	  
                 </div>
               </div>
 
-              <div class="classynav col-12 text-center form-group">
+              <div class="col-12 text-center form-group">
                 <button
                   class="btn btn-outline-dark border border-dark rounded btn-block"
-                  type="submit"
-                >
-                  Criar sua conta
-                  <i class="fa fa-upload" aria-hidden="true"></i>
+                  type="submit">
+                  Criar sua conta<i class="fa fa-upload" aria-hidden="true"></i>
                 </button>
 
                 <button
-                  class="btn btn-outline-dark border border-dark btn-block"
+                  class="btn btn-outline-dark border border-dark rounded btn-block"
                   type="button"
-                  onclick="exibirLoginConta()"
-                >
+                  onclick="exibirLoginConta()">
                   Já possui conta? Clique aqui
                 </button>
               </div>
@@ -188,5 +223,33 @@
   function exibirLoginConta() {
     location.href = "{% url 'login' %}";
   }
+
+  function contaCaracteresUsuario(campo_passado) {
+    var limite = 30;
+    var campo = campo_passado.value.length;
+    var maxlength = document.getElementById("password2").setAttribute("maxlength", limite);
+    var conta = limite - campo
+    var divmag = document.getElementById("divmag");
+    divmag.innerHTML = conta + " Caracteres restantes";
+  }
+
+  function contaCaracteresSenha(campo_passado) {
+    var limite = 30;
+    var campo = campo_passado.value.length;
+    var maxlength = document.getElementById("password").setAttribute("maxlength", limite);
+    var conta = limite - campo
+    var divmagsenha = document.getElementById("divmagsenha");
+    divmagsenha.innerHTML = conta + " Caracteres restantes";
+  }
+
+  function contaCaracteresConfSenha(campo_passado) {
+    var limite = 30;
+    var campo = campo_passado.value.length;
+    var maxlength = document.getElementById("password").setAttribute("maxlength", limite);
+    var conta = limite - campo
+    var divmagconfsenha = document.getElementById("divmagconfsenha");
+    divmagconfsenha.innerHTML = conta + " Caracteres restantes";
+  }
 </script>
-{% include 'partials/_footer.html' %} {% endblock %}
+{% include 'partials/_footer.html' %} 
+{% endblock %}

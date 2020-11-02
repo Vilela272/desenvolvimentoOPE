@@ -2,6 +2,8 @@ from django.shortcuts import render, get_list_or_404, get_object_or_404, redirec
 from django.contrib import auth, messages
 from golden.models import Produto, Pedido, PedidoProduto
 from categorias.models import Categoria
+
+from usuarios.forms import User, UserForm, UserProfile, UserProfileForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
@@ -20,7 +22,7 @@ def produto(request, slug, categoria_id):
         'produtos': produtos_por_pagina
     }
     return render(request, 'produtos/produto.html', produto_a_exibir)
-    
+
 
 def busca(request):
     """
@@ -124,3 +126,38 @@ def remover_produto(request):
     return redirect('login')
 
 
+def confirmar_compra(request):
+    if request.user.is_authenticated:
+       
+        try:
+            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+        except Pedido.DoesNotExist:
+            pedido = Pedido(usuario=request.user, status="Carrinho")
+        
+        if request.method == 'POST':
+            id_produto = request.POST['produto']
+            produto = Produto.objects.get(id=id_produto)
+            quantidade = request.POST['quantidade']
+
+            if quantidade == '':
+                quantidade = 1
+
+            try:
+                item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
+            except PedidoProduto.DoesNotExist:
+                item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
+ 
+            item.quantidade = int(quantidade)
+            pedido.save()
+            item.save()
+        
+        dados = {
+            'pedido': pedido,
+            'itens': PedidoProduto.objects.filter(pedido=pedido),
+        }
+
+        return render(request, 'empresa/confirmarCompra.html', dados)
+    
+    messages.error(
+                request, 'Desculpe! Mas não foi confirmar sua compra.')
+    return render(request, 'usuarios/login.html')

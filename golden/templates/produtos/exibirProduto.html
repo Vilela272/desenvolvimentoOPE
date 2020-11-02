@@ -1,0 +1,70 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %} 
+
+{% include 'partials/_busca.html' %} 
+{% include 'partials/_menu.html' %}
+
+<!-- ##### Best Receipe Area Start ##### -->
+<section class="best-receipe-area">
+    <div class="container">
+        <div class="row">
+        
+            <!-- Single Best Receipe Area -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-best-receipe-area mb-30">
+                    {% if produto.foto_produto == '' %}
+                        <img src="{% static 'img/bg-produto/produto-sem-imagem.webp' %}"
+                        alt="">
+                    {% else %}
+                        <img src="{{ produto.foto_produto.url }}" alt="">
+                    {% endif %}
+                    <div class="col-6 col-md-12">
+                        <div class="receipe-content">
+                          <p align="justify" style="color: black;">
+                            Nome do produto: {{ produto.nome_produto}}
+                          </p>
+                          <p align="justify" style="color: black;">
+                            Lançamento: {{ produto.data_produto }}
+                          </p>
+                          <p align="justify" style="color: black;">
+                            Descrição: {{ produto.descricao }}
+                          </p>
+                          <p align="justify" style="color: black;">
+                            Valor do produto: {{ produto.preco }}
+                          </p>
+                          <form action="{% url 'carrinho' %}" method="POST">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <input
+                              class="form-control border border-dark"
+                              name="quantidade"
+                              id="quantidade"
+                              type="number"
+                              value="1"
+                              title="Quantidade de unidades"
+                              placeholder="Selecione a quantidade desejada"
+                            />
+                          </div>
+                          
+                            <p align="justify">
+                              <button
+                                class="btn btn-outline-dark border border-dark btn-block"
+                                type="submit"
+                              >
+                              <input type="hidden" id="produto" name="produto" value="{{ produto.id }}"/>
+                                Adicionar ao carrinho
+                                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                              </button>
+                            </p>
+                        </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Best Receipe Area End ##### -->
+
+    {% include 'partials/_footer.html' %}
+{% endblock %}

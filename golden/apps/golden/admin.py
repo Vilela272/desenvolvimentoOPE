@@ -23,7 +23,7 @@ class ListandoPedidos(admin.ModelAdmin):
 class ListandoPedidosProdutos(admin.ModelAdmin):
     list_display = ('id', 'pedido', 'produto', 'quantidade')
     list_display_links = ('id', 'produto', 'pedido' )
-    list_filter = ('pedido', )
+    list_filter = ('pedido',)
     list_per_page = 20
 
 
