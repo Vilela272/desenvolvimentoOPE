@@ -16,8 +16,7 @@
             </h4>
   
             <h4 class="alert-heading">
-              Visualize seus produtos adicionados ao carrinho do site da GOLDEN
-              BEAR COMPANY <i class="fa fa-registered" aria-hidden="true"></i>
+              Visualize seu pedido, com o valor total de sua compra, e confirme a forma de pagamento no site da Golden Bear Company. <i class="fa fa-registered" aria-hidden="true"></i>
             </h4>
   
             <p style="color: black;">
@@ -29,9 +28,7 @@
             <hr />
   
             <p class="mb-0" style="color: black;">
-              Abaixo a tabela com os produtos em que você adicionou ao carrinho.
-              Ao confirmar a compra você será redirecionado para confirma o seu
-              endereço de entrega e opções de pagamento.
+              Abaixo a tabela com o número do seu pedido e o valor total de sua compra. Também abaixo você pode escolher a forma de pagamento do sue pedido.
             </p>
           </div>
   
@@ -40,50 +37,88 @@
           
           <div class="contact-form-area">
               <div class="row">
-                <div class="col-12">
-                  <table class="table table-striped table-dark table-bordered table-hover table-responsive-xl border border-dark text-center">
+                <div class="carrinho col-12">
+                  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                  <h1 class="text-center">Carrinho de compras</h1>
+                  <table class="table table-striped table-dark table-bordered table-hover 
+                  table-responsive-xl border border-dark text-center">
                     <thead class="table thead-dark table-responsive-xl">
-                      <tr class="rounded">
+                      <tr class="produto">
                         <th scope="col">Número do pedido</th>
-                        <th scope="col">Código do produto</th>
                         <th scope="col">Nome<br> do produto</th>
                         <th scope="col">Descrição<br> do produto</th>
-                        <th scope="col">Valor unitário</th>
                         <th scope="col">Quantidade unitária</th>
+                        <th scope="col">Valor unitário</th>
+                        <th scope="col">SubTotal do valor</th>
+                        <th scope="col">Remover produto</th>
                       </tr>
                     </thead>
                     <tbody>
                       {% for itemPedido in itens %}
                       <tr>
                         <th scope="row">#{{ itemPedido.pedido.id }}</th>
-                        <th scope="row">#{{ itemPedido.produto.id }}</th>
                         <td>{{ itemPedido.produto.nome_produto }}</td>
                         <td>{{ itemPedido.produto.descricao }}</td>
+                        <td class="qtd_item">{{ itemPedido.quantidade }}</td>
                         <td>{{ itemPedido.produto.preco }}</td>
-                        <td>{{ itemPedido.quantidade }}</td>
+                        <td class="item-total">{{ itemPedido.produto.preco }} + ",00"</td>
+                        <td>
+                          <form method="POST" action="{% url 'removerProdutoConfirmarCompra' %}">
+                            {% csrf_token %}
+                            <button
+                            class="text text-white btn btn-outline-dark btn-link"
+                            type="submit"
+                            >Remover <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                            <input type="hidden" name="produto" value="{{ itemPedido.id }}" />
+                          </form>
+                        </td>
                       </tr>
                       {% endfor %} 
                     </tbody>
                   </table>
+
+                  
+                  <h1 class="text-center">Confirmação do valor total e quantidade de produto</h1>
+                  <table class="table table-striped table-dark table-bordered table-hover 
+                  table-responsive-xl border border-dark text-center">
+                    <thead class="thead-dark table-responsive-xl">
+                    </thead>
+                    
+                    <tbody>
+                      {% if itens %}
+                      <ul class="list-group rounded">
+                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                          <strong class="text-uppercase">Valor total do seu pedido:</strong>
+                          <h5><span class="badge badge-primary badge-pill"><strong>R$ </strong><span class="valorTotal">0</span></span></h5>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
+                          <strong class="text-uppercase">Quantidade de produtos no seu pedido:</strong>
+                          <h5><span class="badge badge-primary badge-pill"><span class="qtdProdutos">0</span></span></h5>
+                        </li>
+                      </ul><br>
+                      {% endif %}
+                    </tbody>
+                  </table>
+
+                  
                 </div>
-  
-                <div class="classynav col-12 text-center text-white">
-                 
-                  <a href="{% url 'confirmarCompra' %}">
-                    <button
-                      class="btn btn-outline-dark border border-dark rounded btn-block"
-                      type="submit">
-                      Confirmar compra
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </button>
-                  </a>
+
+                <div class="col-12 text-center">
+                  <button
+                    class="btn btn-outline-dark border border-dark rounded btn-block"
+                    type="submit"
+                    onclick="exibirTelaConfirmarCompra()">
+                    Pagar com boleto
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                  </button>
   
                   <button
-                    class="btn btn-outline-dark border border-dark btn-block"
-                    type="button"
-                    onclick="exibirTelaHome()">
-                    continuar comprando
-                  </button>
+                      class="btn btn-outline-dark border border-dark btn-block"
+                      type="button"
+                      onclick="exibirTelaHome()">
+                      Pagar com mercado pago. Cartão de débito, crédito e transferência bancária
+                    </button>
                 </div>
               </div>
             {% else %}
@@ -94,7 +129,7 @@
                 <br>
   
                 <h4 class="alert-heading">
-                  No momento você não possui nenhum produto adicionado ao seu carrinho do site da GOLDEN
+                  No momento você não possui nenhum produto adicionado ao seu carrinho para confirmar a compra dos produtos no site da GOLDEN
                   BEAR COMPANY <i class="fa fa-registered" aria-hidden="true"></i>
                 </h4>
       
@@ -125,6 +160,35 @@
     </div>
   </div>
   
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+var atualizaCarrinho = function(){
+    var carrinhos = $('.carrinho');
+    carrinhos.each(function(){
+        var carrinhoAtual = $(this);
+        var valorItem = carrinhoAtual.find('.item-total:visible');
+        var valorTotal = carrinhoAtual.find('.valorTotal');
+        var qtdTotal = carrinhoAtual.find('.qtdProdutos');
+        var item_total = $('.item-total' + ",00");
+        var qtdItems = $('.qtd_item' + ",00");
+        var vt= 0;
+        var resultado = 0.0;
+        for(var i = 0; i < qtdItems.length; i++){
+            var qtdItem = parseFloat(qtdItems[i].innerHTML);
+            var vtItem = qtdItem * parseFloat(item_total[i].innerHTML + ",00");
+            item_total[i].innerHTML = vtItem + ",00";
+            resultado += vtItem;
+            vt += qtdItem ;
+        }   
+                
+        valorTotal.text(resultado + ",00");
+        qtdTotal.text(vt);
+    });
+};
+atualizaCarrinho();
+</script>
 
 
 {% include 'partials/_footer.html' %}

@@ -161,3 +161,40 @@ def confirmar_compra(request):
     messages.error(
                 request, 'Desculpe! Mas não foi confirmar sua compra.')
     return render(request, 'usuarios/login.html')
+
+
+def remover_produto_confirmacao(request):
+    if request.user.is_authenticated:
+
+        if request.method == 'POST':
+            id_item = request.POST['produto']
+
+            try:
+                item = PedidoProduto.objects.get(id=id_item)
+                item.delete()
+            except PedidoProduto.DoesNotExist:
+                pass
+
+        try:
+            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+        except Pedido.DoesNotExist:
+            return render(request, 'empresa/carrinho.html')
+
+        dados = {
+            'pedido': pedido,
+            'itens': PedidoProduto.objects.filter(pedido=pedido)
+        }
+
+        return render(request, 'empresa/confirmarCompra.html', dados)
+    
+    messages.error(
+                request, 'Desculpe! Mas não foi possível remover o produto.')
+    return redirect('login')
+
+
+def politica_de_privacidade(request):
+    """
+    Função que sobre.
+    Quando o usuário clicar no botão Sobre nós, rediciona para a página sobre.html
+    """
+    return render(request, 'empresa/politicaDePrivacidade.html')
