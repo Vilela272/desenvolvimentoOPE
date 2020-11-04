@@ -10,8 +10,8 @@
     <div class="row">
       <div class="col-12">
 
-        <div class="alert alert-success text-dark border border-dark" role="alert">
-          <h4 class="alert-heading text-center">
+        <div class="alert alert-dark text-dark border border-dark" role="alert">
+          <h4 class="text-center">
             Crie sua conta no site da GOLDEN BEAR COMPANY
             <i class="fa fa-registered" aria-hidden="true"></i>
           </h4>
@@ -192,19 +192,22 @@
                 </p>
               </div>
 
-              <div class="col-12 text-left form-group">
-                <div class="alert alert-dark" role="alert">  
-                  <a href="{% url 'politicaDePrivacidade' %}" class="btn-link">Política de Privacidade e Termos de Uso</a>.  
-                   A sua privacidade é importante para nós. É política da Golden Bear Company respeitar a sua privacidade em relação a 
-                  qualquer informação sua que possamos coletar no site <strong>Golden Bear Company</strong>, e outros sites que possuímos e operamos.
-                  
-                </div>
-              </div>
-
               <div class="col-12 col-lg-6 input-group col-md-4 f-left form-group">
                 <div class="checkbox">	    
                   <label>	      
-                    <input type="checkbox" data-error="Você deve marcar este campo!" required> Marque este item, para validar o formulário de cadastro e criar sua conta.	    
+                    <input type="checkbox" data-error="Você deve marcar este campo!" 
+                    required> <a href="{% url 'politicaDePrivacidade' %}" class="btn-link"> 
+                      Política de Privacidade e Termos de Uso</a>.<br> Compreendo e aceito os Termos e Condições da <strong>Golden Bear Company</strong>.
+                  </label>
+                  <div class="help-block with-errors"></div>	  
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-12 input-group col-md-4 f-left form-group">
+                <div class="checkbox">	    
+                  <label>	      
+                    <input type="checkbox" data-error="Você deve marcar este campo!" 
+                    required> Marque este item, para validar o formulário de cadastro e criar sua conta.	    
                   </label>
                   <div class="help-block with-errors"></div>	  
                 </div>

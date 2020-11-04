@@ -8,16 +8,16 @@
     <div class="container">
         <div class="row">
 
-            <div class="alert alert-success text-dark" role="alert">
-                <h4 class="alert-heading text-center text-dark">Informações sobre a empresa GOLDEN BEAR COMPANY 
-                    <i class="fa fa-registered" aria-hidden="true"></i></h4><br>
+            <div class="alert alert-dark text-dark" role="alert">
+                <h2 class="text-left">Informações sobre a empresa GOLDEN BEAR COMPANY 
+                    <i class="fa fa-registered" aria-hidden="true"></i></h2><br>
                 <p style="color:black">A sua loja digital, personalizada da GOLDEN BEAR COMPANY, onde você encontrará camisas, 
                     calças, blusas, acessórios, bonés e chaveiros, fique a vontade para entrar em contato conosco! 
                 </p>
 
                 <hr>
 
-                <h4 class="alert-heading">Sobre nós </h4>
+                <h4>Sobre nós </h4>
                 <p align="justify" style="color:black">Lorem Ipsum is simply dummy text of the printing and 
                     typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                     when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
@@ -36,11 +36,25 @@
 
                 <hr>
 
-                <h4 class="alert-heading">Nossos produtos </h4>
+                <h4>Nossos produtos </h4>
                 <p align="justify" style="color:black">Lorem Ipsum is simply dummy text of the printing and typesetting 
                     industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
                     printer took a galley of type and scrambled it to make a type specimen book. It has survived not only 
                     five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                </p>
+                <hr/>
+
+                <h4>Informações sobre a política de privacidade e termos de uso </h4>
+                <p align="justify" style="color:black">A sua privacidade é importante para nós. 
+                    É política do Golden Bear Company respeitar a sua privacidade em relação a qualquer informação sua que possamos 
+                    coletar no site Golden Bear Company, e outros sites que possuímos e operamos. Para saber mais, clique no link abaixo.
+                </p>
+                <p class="m-auto p-2">
+                    <a href="{% url 'politicaDePrivacidade' %}"> 
+                        <button class="alert-link btn btn-block btn-link" type="submit">
+                            Conferir política de privacidade e termos de uso
+                        </button>
+                    </a>
                 </p>
             </div>
         </div>

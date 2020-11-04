@@ -10,8 +10,8 @@
       <div class="row">
         {% if itens %}
         <div class="col-12">
-          <div class="alert alert-success text-dark border border-dark" role="alert">
-            <h4 class="alert-heading text-center">
+          <div class="alert alert-dark text-dark border border-dark" role="alert">
+            <h4 class="text-center">
               Prezado, {{ user.first_name }} {{ user.last_name }}!
             </h4>
   
@@ -90,11 +90,11 @@
                       <ul class="list-group rounded">
                         <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
                           <strong class="text-uppercase">Valor total do seu pedido:</strong>
-                          <h5><span class="badge badge-primary badge-pill"><strong>R$ </strong><span class="valorTotal">0</span></span></h5>
+                          <h5><span class="badge badge-primary "><strong>R$ </strong><span class="valorTotal">0</span></span></h5>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center border border-dark">
                           <strong class="text-uppercase">Quantidade de produtos no seu pedido:</strong>
-                          <h5><span class="badge badge-primary badge-pill"><span class="qtdProdutos">0</span></span></h5>
+                          <h5><span class="badge badge-primary"><strong>Produtos: </strong><span class="qtdProdutos">0</span></span></h5>
                         </li>
                       </ul><br>
                       {% endif %}
