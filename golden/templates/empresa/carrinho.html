@@ -33,6 +33,25 @@
             Ao confirmar a compra você será redirecionado para confirma o seu
             endereço de entrega e opções de pagamento.
           </p>
+
+          <p class="m-auto p-2 text-center">
+            <a href="{% url 'politicaDeDevolucao' %}"> 
+                <button class="alert-link btn btn-link" type="submit">
+                    Confira a política de troca, devolução e arrependimentos
+                </button>
+            </a><br>
+            <a href="{% url 'termosDeCompra' %}"> 
+              <button class="alert-link btn btn-link" type="submit">
+                  Confira os termos e condições de compra
+              </button>
+          </a>
+
+          <a href="{% url 'politicaDeReembolso' %}"> 
+            <button class="alert-link btn btn-link" type="submit">
+                Confira a política de reembolso
+            </button>
+        </a>
+        </p>
         </div>
 
         {% include 'partials/_alertas.html' %} 
@@ -105,9 +124,8 @@
               </h4>
               <br>
 
-              <h4 class="alert-heading">
-                No momento você não possui nenhum produto adicionado ao seu carrinho do site da GOLDEN
-                BEAR COMPANY <i class="fa fa-registered" aria-hidden="true"></i>
+              <h4 class="alert-heading text-center">
+                No momento você não possui nenhum produto adicionado ao seu carrinho
               </h4>
     
               <p style="color: black;">

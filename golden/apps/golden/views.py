@@ -74,6 +74,10 @@ def carrinho(request):
 
             if quantidade == '':
                 quantidade = 1
+            elif  quantidade == '0' :
+                quantidade = 1
+            elif quantidade < str(0):
+                quantidade = 1
 
             try:
                 item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
@@ -98,6 +102,10 @@ def carrinho(request):
 
 
 def remover_produto(request):
+    """
+    função de remover produto.
+    função criada para remover um produto que esta adicionado ao carrinho de compras
+    """
     if request.user.is_authenticated:
 
         if request.method == 'POST':
@@ -127,6 +135,10 @@ def remover_produto(request):
 
 
 def confirmar_compra(request):
+    """
+    função de confirmar compra.
+    função criada para confirmar a compra e redirecionar os produtos para tela de confirmação
+    """
     if request.user.is_authenticated:
        
         try:
@@ -164,6 +176,10 @@ def confirmar_compra(request):
 
 
 def remover_produto_confirmacao(request):
+    """
+    função de remover produto. da tela de confirmacao de  compra
+    função criada para remover um produto da tela de confirmação de compra que esta adicionado ao carrinho de compras
+    """
     if request.user.is_authenticated:
 
         if request.method == 'POST':
@@ -194,7 +210,36 @@ def remover_produto_confirmacao(request):
 
 def politica_de_privacidade(request):
     """
-    Função que sobre.
-    Quando o usuário clicar no botão Sobre nós, rediciona para a página sobre.html
+    Função politica_de_privacidade.
+    Quando o usuário clicar no link de politicas, 
+    redireciona para a página de politicas de privacidade e termos de uso
     """
     return render(request, 'empresa/politicaDePrivacidade.html')
+
+
+def politica_de_devolucao(request):
+    """
+    Função politica_de_devolucao.
+    Quando o usuário clicar no link politica de devolucao, 
+    redireciona para a página de politica troca, devolucao e arrependimentos
+    """
+    return render(request, 'empresa/politicaDeDevolucao.html')
+
+
+def termos_de_compra(request):
+    """
+    Função termos_de_compra.
+    Quando o usuário clicar no link politica de compra, 
+    redireciona para a página de politica de compra e venda da loja
+    """
+    return render(request, 'empresa/termosDeCompra.html')
+
+
+def politica_de_reembolso(request):
+    """
+    Função politica_de_reembolso.
+    Quando o usuário clicar no link politica de reembolso, 
+    redireciona para a página de politica de reembolso.
+    """
+    return render(request, 'empresa/politicaDeReembolso.html')
+

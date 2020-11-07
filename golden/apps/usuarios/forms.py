@@ -47,5 +47,5 @@ class UserProfileForm(forms.ModelForm):
             'state': "Estado",
             'country': "País",
             'zipcode': "CEP",
-            'phone': "Telefone",
+            'phone': "Telefone ou Celular com DDD",
         }

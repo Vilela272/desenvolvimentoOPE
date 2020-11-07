@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+
+<!-- Receipe Content Area -->
+<div class="receipe-content-area">
+    <div class="container">
+        <div class="row">
+
+            <div class="alert alert-dark text-dark border border-dark" role="alert">
+                <h2 class="text-left">Informações sobre a política de troca, devolução e arrependimento da GOLDEN BEAR COMPANY 
+                    <i class="fa fa-registered" aria-hidden="true"></i>
+                </h2><br>
+
+                <h3>POLÍTICA DE TROCA, DEVOLUÇÃO E ARREPENDIMENTO</h3>
+                <hr/>
+
+                <p class="text-justify" style="color:black">A Golden Bear Company utiliza tecnologia de ponta para a fabricação de seus produtos, 
+                    primando pela qualidade e satisfação de seus clientes. Pelo respeito e para que seja mantida a credibilidade 
+                    conquistada junto aos seus consumidores, a empresa criou uma política de troca e devolução de acordo com o Código 
+                    de Defesa do Consumidor, e preocupada para que você (cliente) obtenha uma negociação eficaz, ágil e principalmente 
+                    satisfatória.<br>
+
+                    Caso opte pelo contato via correio eletrônico ou telefônico, será encaminhado a você o formulário para preenchimento 
+                    e envio junto à(s) peça(s). O produto devolvido sem esse formulário e/ou sem a comunicação ao SAC será reenviado sem 
+                    consulta prévia.<br>
+                    
+                    Ao efetuar o processo de devolução/troca o cliente deverá no verso da nota fiscal a ser devolvida/trocada, informar o 
+                    motivo da devolução/troca, o nome de quem está devolvendo, CPF e a data da devolução. 
+                </p>
+
+                <h4>*ATENÇÃO</h4>
+                <hr/>
+                <p text-justify style="color:black">
+                    Para efetuar o processo de troca é necessário estar logado. Devolução por Arrependimento/Desistência Se ao receber o 
+                    produto, você resolver devolvê-lo por arrependimento, deverá fazê-lo em até sete dias corridos, a contar da data de 
+                    recebimento.<br>
+
+                    Observando as seguintes condições: O produto não poderá ter indícios de uso.<br>
+
+                    O produto deverá ser encaminhado preferencialmente na embalagem original, acompanhado de nota fiscal, etiquetas, tags 
+                    (etiqueta com código de referência do produto) devidamente fixada no produto e todos os seus acessórios.<br>
+
+                    Ao efetuar o processo de devolução o cliente deverá no verso da nota fiscal a ser devolvida, informar o motivo da 
+                    recusa/devolução, o nome de quem está devolvendo, CPF e a data da devolução.<br>
+                </p>
+
+                {% if user.is_authenticated %}
+
+                <p class="m-auto p-2">
+                    <a href="{% url 'carrinho' %}"> 
+                        <button class="alert-link btn btn-block btn-link" type="submit">
+                            Voltar para o carrinho de compras
+                        </button>
+                    </a>
+                </p>
+                {% else %}
+
+                <p class="m-auto p-2">
+                    <a href="{% url 'sobre' %}"> 
+                        <button class="alert-link btn btn-block btn-link" type="submit">
+                            Voltar para a página sobre nós
+                        </button>
+                    </a>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'partials/_footer.html' %}
+{% endblock %}

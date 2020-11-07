@@ -49,10 +49,28 @@
                     É política do Golden Bear Company respeitar a sua privacidade em relação a qualquer informação sua que possamos 
                     coletar no site Golden Bear Company, e outros sites que possuímos e operamos. Para saber mais, clique no link abaixo.
                 </p>
-                <p class="m-auto p-2">
+                
+                <p class="m-auto p-2 text-center">
+                    <a href="{% url 'politicaDeDevolucao' %}"> 
+                        <button class="alert-link btn btn-link" type="submit">
+                            Confira a política de troca, devolução e arrependimentos
+                        </button>
+                    </a><br>
+                    <a href="{% url 'termosDeCompra' %}"> 
+                      <button class="alert-link btn btn-link" type="submit">
+                          Confira os termos e condições de compra
+                      </button>
+                    </a>
+        
+                    <a href="{% url 'politicaDeReembolso' %}"> 
+                        <button class="alert-link btn btn-link" type="submit">
+                            Confira a política de reembolso
+                        </button>
+                    </a>
+
                     <a href="{% url 'politicaDePrivacidade' %}"> 
-                        <button class="alert-link btn btn-block btn-link" type="submit">
-                            Conferir política de privacidade e termos de uso
+                        <button class="alert-link btn btn-link" type="submit">
+                            Conferir a política de privacidade
                         </button>
                     </a>
                 </p>

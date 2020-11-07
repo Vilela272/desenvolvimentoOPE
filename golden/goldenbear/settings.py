@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os, sys
 from pathlib import Path
 from django.core.mail import send_mail
+#from django_mercadopago import urls as mp_urls
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ')wcksy(_8kpz9b(n6^-=4tmiac22od!l$opt_+nb6f^=ruryp$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -81,13 +82,13 @@ WSGI_APPLICATION = 'goldenbear.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'vilela',
-        'USER': 'vilela',
-        'PASSWORD': '123456',
-        "HOST": 'localhost'
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '2107guI*',
+        'HOST': 'opedatabase.ctq9h3jeqx9x.us-east-2.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -155,3 +156,13 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'guilhermevilelamoreirav@gmail.com'
 EMAIL_HOST_PASSWORD = '2105guI*'
+
+"""
+MERCADOPAGO = {
+    'autoprocess': True,
+    'success_url': 'myapp:mp_success',
+    'failure_url': 'myapp:mp_failure',
+    'pending_url': 'myapp:mp_pending',
+    'base_host': 'http://localhost:8000'
+}
+"""

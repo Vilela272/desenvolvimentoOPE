@@ -4,6 +4,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from ajax_select import urls as ajax_select_urls
+#from django_mercadopago import urls as mp_urls
 
 urlpatterns = [
     path('ajax_select/', include(ajax_select_urls)),
@@ -12,6 +13,7 @@ urlpatterns = [
     path('', include('categorias.urls')),
     path('usuarios/', include('usuarios.urls')),
     path('admin/', admin.site.urls),
+    #path(r'^mercadopago/', include('django_mercadopago.urls')),
 
     # Password reset links (ref: https://github.com/django/django/blob/master/django/contrib/auth/views.py)
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), 

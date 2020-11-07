@@ -20,5 +20,9 @@ urlpatterns = [
     path('removerProduto/', views.remover_produto, name="removerProduto"),
     path('removerProdutoConfirmarCompra/', views.remover_produto_confirmacao, name="removerProdutoConfirmarCompra"),
     path('confirmarCompra/', views.confirmar_compra, name="confirmarCompra"),
-     path('politicaDePrivacidade/', views.politica_de_privacidade, name='politicaDePrivacidade'),
+    path('politicaDePrivacidade/', views.politica_de_privacidade, name='politicaDePrivacidade'),
+    path('politicaDeDevolucao/', views.politica_de_devolucao, name='politicaDeDevolucao'),
+    path('termosDeCompra/', views.termos_de_compra, name='termosDeCompra'),
+    path('politicaDeReembolso/', views.politica_de_reembolso, name='politicaDeReembolso'),
+
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

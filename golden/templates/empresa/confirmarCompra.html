@@ -81,10 +81,7 @@
                   
                   <h1 class="text-center">Confirmação do valor total e quantidade de produto</h1>
                   <table class="table table-striped table-dark table-bordered table-hover 
-                  table-responsive-xl border border-dark text-center">
-                    <thead class="thead-dark table-responsive-xl">
-                    </thead>
-                    
+                  table-responsive-xl border border-dark text-center">                    
                     <tbody>
                       {% if itens %}
                       <ul class="list-group rounded">
@@ -100,13 +97,12 @@
                       {% endif %}
                     </tbody>
                   </table>
-
-                  
                 </div>
 
+                <!--
                 <div class="col-12 text-center">
                   <button
-                    class="btn btn-outline-dark border border-dark rounded btn-block"
+                    class="btn btn-outline-dark border border-dark btn-block"
                     type="submit"
                     onclick="exibirTelaConfirmarCompra()">
                     Pagar com boleto
@@ -117,10 +113,11 @@
                       class="btn btn-outline-dark border border-dark btn-block"
                       type="button"
                       onclick="exibirTelaHome()">
-                      Pagar com mercado pago. Cartão de débito, crédito e transferência bancária
+                      Pagar com mercado pago
                     </button>
                 </div>
               </div>
+              -->
             {% else %}
               <div class="alert alert-danger text-dark border border-dark" role="alert">
                 <h4 class="alert-heading text-center">
@@ -128,9 +125,8 @@
                 </h4>
                 <br>
   
-                <h4 class="alert-heading">
-                  No momento você não possui nenhum produto adicionado ao seu carrinho para confirmar a compra dos produtos no site da GOLDEN
-                  BEAR COMPANY <i class="fa fa-registered" aria-hidden="true"></i>
+                <h4 class="alert-heading text-center">
+                  No momento você não possui nenhum produto adicionado ao seu carrinho
                 </h4>
       
                 <p style="color: black;">

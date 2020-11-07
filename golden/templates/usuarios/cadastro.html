@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-12">
 
-        <div class="alert alert-dark text-dark border border-dark" role="alert">
+        <div class="alert alert-dark text-dark text-center border border-dark" role="alert">
           <h4 class="text-center">
             Crie sua conta no site da GOLDEN BEAR COMPANY
             <i class="fa fa-registered" aria-hidden="true"></i>
@@ -51,11 +51,11 @@
                   onkeydown="contaCaracteresUsuario(this)"
                   onkeyup="contaCaracteresUsuario(this)"
                   onclick="contaCaracteresUsuario(this)"
-                  style="color: #000"
+                  style="color: rgba(0, 0, 0, 0.849)"
                   required
                 />
                 <div>
-                  <strong><p style="color: black;" id="divmag">30 Caracteres restantes</p></strong>
+                  <strong><p style="color: black;" id="divmag">30 caracteres restantes</p></strong>
                 </div>
                 
               </div>
@@ -141,7 +141,7 @@
                   placeholder="Digite sua senha..."
                   data-minlength="8"
                   maxlength="30"
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!|@|#|$|%|^|&|*|(|)|-|_]).{8,}"
                   title="Senha deve conter de oito (8) a trinta (30) caracteres pelo menos um número, uma letra maiúscula, 
                   uma minúscula e não deve conter espaços ou emoji."
                   onkeydown="contaCaracteresSenha(this)"
@@ -150,7 +150,7 @@
                   required
                 />
                 <div>
-                  <strong><p style="color: black;" id="divmagsenha">30 Caracteres restantes</p></strong>
+                  <strong><p style="color: black;" id="divmagsenha">30 caracteres restantes</p></strong>
                 </div>
                 <p style="color: black;">
                   <strong style="color: black;">Atenção:</strong> Senha deve conter de oito (8) a trinta (30) caracteres pelo menos um número, uma letra maiúscula, 
@@ -175,7 +175,7 @@
                   maxlength="30"
                   data-match="#password"
                   data-match-error="Atenção! As senhas não estão iguais."
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!|@|#|$|%|^|&|*|(|)|-|_]).{8,}"
                   title="Senha deve conter de oito (8) a trinta (30) caracteres pelo menos um número, uma letra maiúscula, 
                   uma minúscula e não deve conter espaços ou emoji."
                   onkeydown="contaCaracteresConfSenha(this)"
@@ -184,7 +184,7 @@
                   required
                 />
                 <div>
-                  <strong><p style="color: black;" id="divmagconfsenha">30 Caracteres restantes</p></strong>
+                  <strong><p style="color: black;" id="divmagconfsenha">30 caracteres restantes</p></strong>
                 </div>
                 <p style="color: black;">
                   <strong style="color: black;">Atenção:</strong> Senha deve conter de oito (8) a trinta (30) caracteres pelo menos um número, uma letra maiúscula, 
@@ -250,7 +250,7 @@
     var maxlength = document.getElementById("username").setAttribute("maxlength", limite);
     var conta = limite - campo
     var divmag = document.getElementById("divmag");
-    divmag.innerHTML = conta + " Caracteres restantes";
+    divmag.innerHTML = conta + " caracteres restantes";
   }
 
   function contaCaracteresSenha(campo_passado) {
@@ -259,7 +259,7 @@
     var maxlength = document.getElementById("password").setAttribute("maxlength", limite);
     var conta = limite - campo
     var divmagsenha = document.getElementById("divmagsenha");
-    divmagsenha.innerHTML = conta + " Caracteres restantes";
+    divmagsenha.innerHTML = conta + " caracteres restantes";
   }
 
   function contaCaracteresConfSenha(campo_passado) {
@@ -268,7 +268,7 @@
     var maxlength = document.getElementById("password2").setAttribute("maxlength", limite);
     var conta = limite - campo
     var divmagconfsenha = document.getElementById("divmagconfsenha");
-    divmagconfsenha.innerHTML = conta + " Caracteres restantes";
+    divmagconfsenha.innerHTML = conta + " caracteres restantes";
   }
 </script>
 {% include 'partials/_footer.html' %} 
