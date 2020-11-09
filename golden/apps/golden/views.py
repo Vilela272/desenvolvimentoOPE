@@ -53,6 +53,58 @@ def sobre(request):
     return render(request, 'empresa/sobre.html')
 
 
+def boleto_bradesco(request):
+    """
+    Função que sobre.
+    Quando o usuário clicar no botão Sobre nós, rediciona para a página sobre.html
+    """
+    if request.user.is_authenticated:
+        try:
+            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+        except Pedido.DoesNotExist:
+            pedido = Pedido(usuario=request.user, status="Carrinho")
+        
+        if request.method == 'POST':
+            id_produto = request.POST['produto']
+            produto = Produto.objects.get(id=id_produto)
+            quantidade = request.POST['quantidade']
+
+            if quantidade == '':
+                quantidade = 1
+            elif  quantidade == '0' :
+                quantidade = 1
+            elif quantidade < str(0):
+                quantidade = 1
+
+            try:
+                item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
+            except PedidoProduto.DoesNotExist:
+                item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
+ 
+            item.quantidade = int(quantidade)
+            pedido.save()
+            item.save()
+        
+        dados = {
+            'pedido': pedido,
+            'itens': PedidoProduto.objects.filter(pedido=pedido)
+        }
+        
+        return render(request, 'boleto/boletoBradesco.html', dados)
+    
+    messages.error(
+                request, 'Desculpe! Mas você só pode inserir um produto ao carrinho se estiver logado.')
+    return redirect('login')
+
+
+def pagamento_cartao(request):
+    """
+    Função que sobre.
+    Quando o usuário clicar no botão Sobre nós, rediciona para a página sobre.html
+    """
+    return render(request, 'boleto/pagamentoBoleto.html')
+
+
 def carrinho(request):
     """
     Função do carrinho de compras.

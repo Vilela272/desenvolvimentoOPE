@@ -27,7 +27,7 @@ SECRET_KEY = ')wcksy(_8kpz9b(n6^-=4tmiac22od!l$opt_+nb6f^=ruryp$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["18.191.214.111"]
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'goldenbear.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '2107guI*',
-        'HOST': 'opedatabase.ctq9h3jeqx9x.us-east-2.rds.amazonaws.com',
+        'NAME': 'vilela',
+        'USER': 'vilela',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }

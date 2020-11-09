@@ -97,27 +97,70 @@
                       {% endif %}
                     </tbody>
                   </table>
+
+                  <!-- Declaração do formulário -->  
+                  <form method="post" target="pagseguro"  
+                  action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
+                            
+                    <!-- Campos obrigatórios -->  
+                    <input name="receiverEmail" type="hidden" value="suporte@lojamodelo.com.br">  
+                    <input name="currency" type="hidden" value="BRL">  
+              
+                    {% for itemPedido in itens %}
+                      <!-- Itens do pagamento (ao menos um item é obrigatório) -->  
+                      <input name="itemId1" type="hidden" value="{{ itemPedido.pedido.id }}">  
+                      <input name="itemDescription1" type="hidden" value="{{ itemPedido.produto.nome_produto }}">  
+                      <input name="itemAmount1" type="hidden" value="1.00">  
+                      <input name="itemQuantity1" type="hidden" value="{{ itemPedido.quantidade }}">   
+                      <input name="itemWeight1" type="hidden" value="1000">  
+                    {% endfor %}
+                    
+              
+                    <!-- Código de referência do pagamento no seu sistema (opcional) -->  
+                    <input name="reference" type="hidden" value="REF1234">  
+                      
+                    <!-- Informações de frete (opcionais) -->  
+                    <input name="shippingType" type="hidden" value="1">  
+                    <input name="shippingAddressPostalCode" type="hidden" value="04459010">  
+                    <input name="shippingAddressStreet" type="hidden" value="{{ UserProfile.address }}">  
+                    <input name="shippingAddressNumber" type="hidden" value="41">  
+                    <input name="shippingAddressComplement" type="hidden" value="{{ UserProfile.address }}">  
+                    <input name="shippingAddressDistrict" type="hidden" value="Jardim Paulistano">  
+                    <input name="shippingAddressCity" type="hidden" value="{{ UserProfile.city }}">  
+                    <input name="shippingAddressState" type="hidden" value="{{ UserProfile.country }}">  
+                    <input name="shippingAddressCountry" type="hidden" value="BRA">  
+              
+                    <!-- Dados do comprador (opcionais) -->  
+                    <input name="senderName" type="hidden" value="{{ user.first_name }}">  
+                    <input name="senderAreaCode" type="hidden" value="{{ UserProfile.phone }}">  
+                    <input name="senderPhone" type="hidden" value="{{ UserProfile.phone }}">  
+                    <input name="senderEmail" type="hidden" value="{{ user.email }}">  
+              
+                    <!-- submit do form (obrigatório) -->  
+
+                      <button class="btn btn-outline-dark btn-block border border-dark" 
+                      type="submit">
+                      Pagar com pagseguro
+                      </button>
+                            
+                  </form>  <br>
                 </div>
 
-                <!--
                 <div class="col-12 text-center">
-                  <button
-                    class="btn btn-outline-dark border border-dark btn-block"
-                    type="submit"
-                    onclick="exibirTelaConfirmarCompra()">
-                    Pagar com boleto
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                  </button>
-  
-                  <button
-                      class="btn btn-outline-dark border border-dark btn-block"
-                      type="button"
-                      onclick="exibirTelaHome()">
-                      Pagar com mercado pago
+                    <button
+                      class="btn btn-outline-dark btn-block border border-dark"
+                      type="submit"
+                      onclick="exibirTelaBoletoBradesco()">pagamento no próprio sistema
+                    </button>
+
+
+                    <button
+                      class="btn btn-outline-dark btn-block border border-dark"
+                      type="submit"
+                      onclick="exibirTelaPagamentoCartao()">pagamento com cartão de crédito ou Paypal
                     </button>
                 </div>
-              </div>
-              -->
+
             {% else %}
               <div class="alert alert-danger text-dark border border-dark" role="alert">
                 <h4 class="alert-heading text-center">
@@ -141,7 +184,7 @@
                   Para facilitar sua navegação dentro do site, você pode clicar no link abaixo e ir para o menu principal, selecionar 
                   uma categoria e adicionar um produto ao seu carrinho.<br>
                 </p>
-                <a href="{% url 'index' %}" class="btn btn-block btn-link"
+                <a href="{% url 'index' %}" class="btn btn-block btn-link">
                   <button
                     class="btn btn-outline-dark btn-link"
                     type="submit">Clique aqui! Para ir ao menu principal
@@ -159,6 +202,15 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
+
+function exibirTelaBoletoBradesco() {
+  location.href = "{% url 'boletoBradesco' %}";
+}
+
+function exibirTelaPagamentoCartao() {
+  location.href = "{% url 'pagamentoCartao' %}";
+}
+
 
 var atualizaCarrinho = function(){
     var carrinhos = $('.carrinho');

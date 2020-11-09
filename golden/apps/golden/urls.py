@@ -24,5 +24,7 @@ urlpatterns = [
     path('politicaDeDevolucao/', views.politica_de_devolucao, name='politicaDeDevolucao'),
     path('termosDeCompra/', views.termos_de_compra, name='termosDeCompra'),
     path('politicaDeReembolso/', views.politica_de_reembolso, name='politicaDeReembolso'),
+    path('boletoBradesco/', views.boleto_bradesco, name='boletoBradesco'),
+    path('pagamentoCartao/', views.pagamento_cartao, name='pagamentoCartao'),
 
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
