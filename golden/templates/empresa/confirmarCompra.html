@@ -99,6 +99,7 @@
                   </table>
 
                   <!-- Declaração do formulário -->  
+                  
                   <form method="post" target="pagseguro"  
                   action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
                             
@@ -106,29 +107,31 @@
                     <input name="receiverEmail" type="hidden" value="suporte@lojamodelo.com.br">  
                     <input name="currency" type="hidden" value="BRL">  
               
+                    <!-- Itens do pagamento (ao menos um item é obrigatório) -->  
                     {% for itemPedido in itens %}
-                      <!-- Itens do pagamento (ao menos um item é obrigatório) -->  
-                      <input name="itemId1" type="hidden" value="{{ itemPedido.pedido.id }}">  
-                      <input name="itemDescription1" type="hidden" value="{{ itemPedido.produto.nome_produto }}">  
-                      <input name="itemAmount1" type="hidden" value="1.00">  
-                      <input name="itemQuantity1" type="hidden" value="{{ itemPedido.quantidade }}">   
-                      <input name="itemWeight1" type="hidden" value="1000">  
+                    {% load l10n %}
+                      <input name="itemId{{ forloop.counter }}" type="hidden" value="{{ itemPedido.pedido.id }}">  
+                      <input name="itemDescription{{ forloop.counter }}" type="hidden" value="{{ itemPedido.produto.nome_produto }}"> 
+                      {% localize off %}
+                        <input name="itemAmount{{ forloop.counter }}" type="hidden" value="{{ itemPedido.produto.preco }}">
+                      {% endlocalize %}
+                      <input name="itemQuantity{{ forloop.counter }}" type="hidden" value="{{ itemPedido.quantidade }}">   
+                      <input name="itemWeight{{ forloop.counter }}" type="hidden" value="1000">   
                     {% endfor %}
-                    
-              
+
                     <!-- Código de referência do pagamento no seu sistema (opcional) -->  
                     <input name="reference" type="hidden" value="REF1234">  
                       
                     <!-- Informações de frete (opcionais) -->  
                     <input name="shippingType" type="hidden" value="1">  
-                    <input name="shippingAddressPostalCode" type="hidden" value="04459010">  
-                    <input name="shippingAddressStreet" type="hidden" value="{{ UserProfile.address }}">  
-                    <input name="shippingAddressNumber" type="hidden" value="41">  
-                    <input name="shippingAddressComplement" type="hidden" value="{{ UserProfile.address }}">  
-                    <input name="shippingAddressDistrict" type="hidden" value="Jardim Paulistano">  
-                    <input name="shippingAddressCity" type="hidden" value="{{ UserProfile.city }}">  
-                    <input name="shippingAddressState" type="hidden" value="{{ UserProfile.country }}">  
-                    <input name="shippingAddressCountry" type="hidden" value="BRA">  
+                    <input name="shippingAddressPostalCode" type="hidden" value="04115-100">
+                    <input name="shippingAddressStreet" type="hidden" value="">  
+                    <input name="shippingAddressNumber" type="hidden" value="666">  
+                    <input name="shippingAddressComplement" type="hidden" value="">  
+                    <input name="shippingAddressDistrict" type="hidden" value="">  
+                    <input name="shippingAddressCity" type="hidden" value="">  
+                    <input name="shippingAddressState" type="hidden" value="">  
+                    <input name="shippingAddressCountry" type="hidden" value="">  
               
                     <!-- Dados do comprador (opcionais) -->  
                     <input name="senderName" type="hidden" value="{{ user.first_name }}">  
@@ -138,14 +141,16 @@
               
                     <!-- submit do form (obrigatório) -->  
 
-                      <button class="btn btn-outline-dark btn-block border border-dark" 
-                      type="submit">
-                      Pagar com pagseguro
-                      </button>
+                    <button class="btn btn-outline-dark btn-block border border-dark" 
+                    type="submit">
+                    Pagar com pagseguro
+                    </button>
                             
-                  </form>  <br>
+                  </form> <br>
+                   
                 </div>
 
+                <!--
                 <div class="col-12 text-center">
                     <button
                       class="btn btn-outline-dark btn-block border border-dark"
@@ -160,6 +165,7 @@
                       onclick="exibirTelaPagamentoCartao()">pagamento com cartão de crédito ou Paypal
                     </button>
                 </div>
+                -->
 
             {% else %}
               <div class="alert alert-danger text-dark border border-dark" role="alert">

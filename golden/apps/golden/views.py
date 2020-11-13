@@ -2,6 +2,7 @@ from django.shortcuts import render, get_list_or_404, get_object_or_404, redirec
 from django.contrib import auth, messages
 from golden.models import Produto, Pedido, PedidoProduto
 from categorias.models import Categoria
+from usuarios.forms import UserForm, UserProfile, UserProfileForm
 
 from usuarios.forms import User, UserForm, UserProfile, UserProfileForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -192,11 +193,22 @@ def confirmar_compra(request):
     função criada para confirmar a compra e redirecionar os produtos para tela de confirmação
     """
     if request.user.is_authenticated:
+        user = User.objects.get(pk=request.user.pk)
+        user_form = UserForm(instance=user)
        
         try:
             pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
         except Pedido.DoesNotExist:
             pedido = Pedido(usuario=request.user, status="Carrinho")
+        
+        try:
+            user_profile = UserProfile.objects.get(user=user)
+        except:
+            user_profile = UserProfile()
+            user_profile.user = user
+            user_profile.save()
+        
+        profile_form = UserProfileForm(instance=user_profile)
         
         if request.method == 'POST':
             id_produto = request.POST['produto']
@@ -214,10 +226,32 @@ def confirmar_compra(request):
             item.quantidade = int(quantidade)
             pedido.save()
             item.save()
+
+            user_form = UserForm(request.POST)
+            profile_form = UserProfileForm(request.POST)
+            if user_form.is_valid() and profile_form.is_valid():
+                user.first_name = user_form.cleaned_data['first_name']
+                user.last_name = user_form.cleaned_data['last_name']
+                user.save()
+
+                user_profile.cpf = profile_form.cleaned_data['cpf']
+                user_profile.address = profile_form.cleaned_data['address']
+                user_profile.number = profile_form.cleaned_data['number']
+                user_profile.address2 = profile_form.cleaned_data['address2']
+                user_profile.city = profile_form.cleaned_data['city']
+                user_profile.district = profile_form.cleaned_data['district']
+                user_profile.state = profile_form.cleaned_data['state']
+                user_profile.country = profile_form.cleaned_data['country']
+                user_profile.zipcode = profile_form.cleaned_data['zipcode']
+                user_profile.phone = profile_form.cleaned_data['phone']
+                user_profile.save()
         
         dados = {
             'pedido': pedido,
             'itens': PedidoProduto.objects.filter(pedido=pedido),
+            'user_form': user_form,
+            'profile_form': profile_form,
+            'user': user
         }
 
         return render(request, 'empresa/confirmarCompra.html', dados)

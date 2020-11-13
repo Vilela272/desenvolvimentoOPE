@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'usuarios',
     'categorias',
     'golden',
-    'pagamentos',
     'ajax_select',
 ]
 

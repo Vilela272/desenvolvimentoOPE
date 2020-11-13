@@ -6,11 +6,11 @@ from categorias.models import Categoria
 
 class ListandoProdutos(admin.ModelAdmin):
     prepopulated_fields = {"slug": ('nome_produto', )}
-    list_display = ('id', 'nome_produto', 'data_produto','publicada', 'categoria', 'categoria_id')
+    list_display = ('id', 'nome_produto', 'data_produto','publicada', 'preco', 'categoria', 'categoria_id')
     list_display_links = ('id',  'nome_produto', )
     search_fields = ('nome_produto', )
     list_filter = ('categoria', 'publicada', )
-    list_editable = ('publicada', )
+    list_editable = ('publicada', 'preco', )
     list_per_page = 4
 
 class ListandoPedidos(admin.ModelAdmin):
