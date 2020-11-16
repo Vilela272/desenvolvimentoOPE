@@ -76,14 +76,24 @@
                   </thead>
                   <tbody>
                     {% for itemPedido in itens %}
-                    <tr>
-                      <th scope="row">#{{ itemPedido.pedido.id }}</th>
-                      <th scope="row">#{{ itemPedido.produto.id }}</th>
-                      <td>{{ itemPedido.produto.nome_produto }}</td>
-                      <td>{{ itemPedido.produto.descricao }}</td>
-                      <td>{{ itemPedido.quantidade }}</td>
-                      <td>{{ itemPedido.produto.preco }}</td>
+                    <tr class="align-middle">
+                      <th scope="row" class="align-middle">#{{ itemPedido.pedido.id }}</th>
+                      <th scope="row" class="align-middle">#{{ itemPedido.produto.id }}</th>
+                      <td class="align-middle">{{ itemPedido.produto.nome_produto }}</td>
+                      <td class="align-middle">{{ itemPedido.produto.descricao }}</td>
                       <td>
+                        <input
+                          class="form-control border border-secondary rounded p-1 mb-1 bg-transparent text-white"
+                          name="quantidade"
+                          id="quantidade"
+                          type="number"
+                          title="Quantidade de unidades"
+                          placeholder="Selecione a quantidade desejada"
+                          value="{{ itemPedido.quantidade }}"
+                        />
+                        </td>
+                      <td class="align-middle">{{ itemPedido.produto.preco }}</td>
+                      <td class="align-middle">
                         <form method="POST" action="{% url 'removerProduto' %}">
                           {% csrf_token %}
                           <button

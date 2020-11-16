@@ -1,16 +1,15 @@
-{% extends 'base.html' %} 
-{% load static %} {% block content %} 
-
-{% include 'partials/_busca.html' %} 
-{% include 'partials/_menu.html' %}
+{% extends 'base.html' %} {% load static %} {% block content %} {% include
+'partials/_busca.html' %} {% include 'partials/_menu.html' %}
 
 <!-- ##### Contact Form Area Start ##### -->
 <div class="contact-area section-padding-0">
   <div class="container">
     <div class="row">
       <div class="col-12">
-
-        <div class="alert alert-dark text-dark text-center border border-dark" role="alert">
+        <div
+          class="alert alert-dark text-dark text-center border border-dark"
+          role="alert"
+        >
           <h4 class="text-center">
             Crie sua conta no site da GOLDEN BEAR COMPANY
             <i class="fa fa-registered" aria-hidden="true"></i>
@@ -30,14 +29,21 @@
 
         {% include 'partials/_alertas.html' %}
         <div class="contact-form-area">
-          <form class="ls-form ls-form-horizontal" action="{% url 'cadastro' %}" method="POST" data-toggle="validator" role="form">
+          <form
+            class="ls-form ls-form-horizontal"
+            action="{% url 'cadastro' %}"
+            method="POST"
+            data-toggle="validator"
+            role="form"
+          >
             {% csrf_token %}
 
             <div class="row form-group">
-
               <div class="col-12 col-lg-12 ls-prefix-group">
                 <label for="username">
-                  <b>Usuário <i class="fa fa-user-plus" aria-hidden="true"></i></b>
+                  <b
+                    >Usuário <i class="fa fa-user-plus" aria-hidden="true"></i
+                  ></b>
                 </label>
                 <input
                   type="text"
@@ -51,13 +57,16 @@
                   onkeydown="contaCaracteresUsuario(this)"
                   onkeyup="contaCaracteresUsuario(this)"
                   onclick="contaCaracteresUsuario(this)"
-                  style="color: rgba(0, 0, 0, 0.849)"
+                  style="color: rgba(0, 0, 0, 0.849);"
                   required
                 />
                 <div>
-                  <strong><p style="color: black;" id="divmag">30 caracteres restantes</p></strong>
+                  <strong
+                    ><p style="color: black;" id="divmag">
+                      30 caracteres restantes
+                    </p></strong
+                  >
                 </div>
-                
               </div>
 
               <div class="col-12 col-lg-6">
@@ -79,7 +88,8 @@
 
               <div class="col-12 col-lg-6">
                 <label for="sobrenome"
-                  ><b>Sobrenome
+                  ><b
+                    >Sobrenome
                     <i class="fa fa-user-plus" aria-hidden="true"></i></b
                 ></label>
                 <input
@@ -93,9 +103,10 @@
                 />
               </div>
 
-              <div class="col-12 col-lg-6 ">
+              <div class="col-12 col-lg-6">
                 <label for="email"
-                  ><b>Email
+                  ><b
+                    >Email
                     <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></b
                 ></label>
                 <input
@@ -109,11 +120,17 @@
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   required
                 />
+                <p style="color: black;">
+                  <strong style="color: black;">Atenção:</strong> Seu e-mail
+                  deve contar um nome antes do '@', e após o '@' deve conter um
+                  domínio.
+                </p>
               </div>
 
               <div class="col-12 col-lg-6">
                 <label for="email2"
-                  ><b>Confirmação de Email
+                  ><b
+                    >Confirmação de Email
                     <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></b
                 ></label>
                 <input
@@ -127,12 +144,19 @@
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   required
                 />
+                <p style="color: black;">
+                  <strong style="color: black;">Atenção:</strong> Seu e-mail
+                  deve contar um nome antes do '@', e após o '@' deve conter um
+                  domínio.
+                </p>
               </div>
 
-              <div class="col-12 col-lg-6 form-group ">
-                <label for="password" class="control-label"
-                  ><b>Senha <i class="fa fa-key fa-fw" aria-hidden="true"></i></b
-                ></label>
+              <div class="col-12 col-lg-6 form-group">
+                <label for="password" class="control-label">
+                  <b>
+                    Senha <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+                  </b>
+                </label>
                 <input
                   type="password"
                   class="form-control is-valid border border-dark rounded"
@@ -150,17 +174,26 @@
                   required
                 />
                 <div>
-                  <strong><p style="color: black;" id="divmagsenha">30 caracteres restantes</p></strong>
+                  <strong
+                    ><p style="color: black;" id="divmagsenha">
+                      30 caracteres restantes
+                    </p></strong
+                  >
                 </div>
                 <p style="color: black;">
-                  <strong style="color: black;">Atenção:</strong> Senha deve conter de oito (8) a trinta (30) caracteres pelo menos um número, uma letra maiúscula, 
-                  uma minúscula e não deve conter espaços ou emoji.
+                  <strong style="color: black;">Atenção:</strong> Senha deve
+                  conter de oito (8) a trinta (30) caracteres pelo menos um
+                  número, uma letra maiúscula, uma minúscula e não deve conter
+                  espaços ou emoji.
                 </p>
               </div>
 
-              <div class="col-12 col-lg-6 input-group col-md-4 f-left form-group">
+              <div
+                class="col-12 col-lg-6 input-group col-md-4 f-left form-group"
+              >
                 <label for="password2" class="control-label"
-                  ><b>Confirmação de senha
+                  ><b
+                    >Confirmação de senha
                     <i class="fa fa-key fa-fw" aria-hidden="true"></i></b
                 ></label>
                 <input
@@ -184,49 +217,59 @@
                   required
                 />
                 <div>
-                  <strong><p style="color: black;" id="divmagconfsenha">30 caracteres restantes</p></strong>
+                  <strong
+                    ><p style="color: black;" id="divmagconfsenha">
+                      30 caracteres restantes
+                    </p></strong
+                  >
                 </div>
                 <p style="color: black;">
-                  <strong style="color: black;">Atenção:</strong> Senha deve conter de oito (8) a trinta (30) caracteres pelo menos um número, uma letra maiúscula, 
-                  uma minúscula e não deve conter espaços ou emoji.
+                  <strong style="color: black;">Atenção:</strong> Senha deve
+                  conter de oito (8) a trinta (30) caracteres pelo menos um
+                  número, uma letra maiúscula, uma minúscula e não deve conter
+                  espaços ou emoji.
                 </p>
               </div>
 
-              <div class="col-12 col-lg-6 input-group col-md-4 f-left form-group">
-                <div class="checkbox">	    
-                  <label>	      
-                    <input type="checkbox" data-error="Você deve marcar este campo!" 
-                    required> <a href="{% url 'politicaDePrivacidade' %}" class="btn-link"> 
-                      Política de Privacidade e Termos de Uso</a>.<br> Compreendo e aceito os Termos e Condições da <strong>Golden Bear Company</strong>.
+              <div
+                class="col-12 col-lg-6 input-group col-md-4 f-left form-group"
+              >
+                <div class="checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      data-error="Você deve marcar este campo!"
+                      required
+                    />
+                    <a
+                      href="{% url 'politicaDePrivacidade' %}"
+                      class="btn-link"
+                    >
+                      Política de Privacidade e Termos de Uso</a
+                    >.<br />
+                    Compreendo e aceito os Termos e Condições da
+                    <strong>Golden Bear Company</strong>.
                   </label>
-                  <div class="help-block with-errors"></div>	  
-                </div>
-              </div>
-
-              <div class="col-12 col-lg-12 input-group col-md-4 f-left form-group">
-                <div class="checkbox">	    
-                  <label>	      
-                    <input type="checkbox" data-error="Você deve marcar este campo!" 
-                    required> Marque este item, para validar o formulário de cadastro e criar sua conta.	    
-                  </label>
-                  <div class="help-block with-errors"></div>	  
+                  <div class="help-block with-errors"></div>
                 </div>
               </div>
 
               <div class="col-12 text-center form-group">
                 <button
                   class="btn btn-outline-dark border border-dark rounded btn-block"
-                  type="submit">
+                  type="submit"
+                >
                   Criar sua conta<i class="fa fa-upload" aria-hidden="true"></i>
                 </button>
 
                 <button
                   class="btn btn-outline-dark border border-dark rounded btn-block"
                   type="button"
-                  onclick="exibirLoginConta()">
+                  onclick="exibirLoginConta()"
+                >
                   Já possui conta? Clique aqui
                 </button>
-              </div>              
+              </div>
             </div>
           </form>
         </div>
@@ -247,8 +290,10 @@
   function contaCaracteresUsuario(campo_passado) {
     var limite = 30;
     var campo = campo_passado.value.length;
-    var maxlength = document.getElementById("username").setAttribute("maxlength", limite);
-    var conta = limite - campo
+    var maxlength = document
+      .getElementById("username")
+      .setAttribute("maxlength", limite);
+    var conta = limite - campo;
     var divmag = document.getElementById("divmag");
     divmag.innerHTML = conta + " caracteres restantes";
   }
@@ -256,8 +301,10 @@
   function contaCaracteresSenha(campo_passado) {
     var limite = 30;
     var campo = campo_passado.value.length;
-    var maxlength = document.getElementById("password").setAttribute("maxlength", limite);
-    var conta = limite - campo
+    var maxlength = document
+      .getElementById("password")
+      .setAttribute("maxlength", limite);
+    var conta = limite - campo;
     var divmagsenha = document.getElementById("divmagsenha");
     divmagsenha.innerHTML = conta + " caracteres restantes";
   }
@@ -265,11 +312,12 @@
   function contaCaracteresConfSenha(campo_passado) {
     var limite = 30;
     var campo = campo_passado.value.length;
-    var maxlength = document.getElementById("password2").setAttribute("maxlength", limite);
-    var conta = limite - campo
+    var maxlength = document
+      .getElementById("password2")
+      .setAttribute("maxlength", limite);
+    var conta = limite - campo;
     var divmagconfsenha = document.getElementById("divmagconfsenha");
     divmagconfsenha.innerHTML = conta + " caracteres restantes";
   }
 </script>
-{% include 'partials/_footer.html' %} 
-{% endblock %}
+{% include 'partials/_footer.html' %} {% endblock %}

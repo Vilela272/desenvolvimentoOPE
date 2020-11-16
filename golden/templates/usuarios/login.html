@@ -1,9 +1,5 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{% block content %} 
-
-{% include 'partials/_busca.html' %} 
-{% include 'partials/_menu.html' %}
+{% extends 'base.html' %} {% load static %} {% block content %} 
+{% include 'partials/_busca.html' %} {% include 'partials/_menu.html' %}
 
 <!-- ##### Contact Form Area Start ##### -->
 <div class="contact-area section-padding-0-80">
@@ -11,35 +7,45 @@
     <div class="row">
       <div class="col-12">
         <div class="contact-form-area">
-            <div class="alert alert-dark text-dark text-center border border-dark" role="alert">
-              <h4 class="text-center">
-                Realize o seu
-                <i class="fa fa-sign-in" aria-hidden="true"></i>
-                Login no site da GOLDEN BEAR COMPANY
-                <i class="fa fa-registered" aria-hidden="true"> </i>
-              </h4>
+          <div
+            class="alert alert-dark text-dark text-center border border-dark"
+            role="alert"
+          >
+            <h4 class="text-center">
+              Realize o seu
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              Login no site da GOLDEN BEAR COMPANY
+              <i class="fa fa-registered" aria-hidden="true"> </i>
+            </h4>
 
-              <p style="color: black;">
-                A sua loja digital e personalizada da GOLDEN BEAR COMPANY. Aqui
-                você encontrará camisas, calças, blusas, acessórios, bonés e
-                chaveiros. Fique à vontade para entrar em contato conosco!
-              </p>
+            <p style="color: black;">
+              A sua loja digital e personalizada da GOLDEN BEAR COMPANY. Aqui
+              você encontrará camisas, calças, blusas, acessórios, bonés e
+              chaveiros. Fique à vontade para entrar em contato conosco!
+            </p>
 
-              <hr />
+            <hr />
 
-              <p class="mb-0" style="color: black;">
-                Todos os dados a seguir serão obrigatórios para realizar login
-                no site da GOLDEN BEAR COMPANY
-                <i class="fa fa-paw" aria-hidden="true"></i>
-              </p>
-            </div>
-            {% include 'partials/_alertas.html' %}
-            <form class="ls-form ls-form-horizontal" action="{% url 'login' %}" method="POST" data-toggle="validator" role="form">
+            <p class="mb-0" style="color: black;">
+              Todos os dados a seguir serão obrigatórios para realizar login no
+              site da GOLDEN BEAR COMPANY
+              <i class="fa fa-paw" aria-hidden="true"></i>
+            </p>
+          </div>
+          {% include 'partials/_alertas.html' %}
+          <form
+            class="ls-form ls-form-horizontal"
+            action="{% url 'login' %}"
+            method="POST"
+            data-toggle="validator"
+            role="form"
+          >
             {% csrf_token %}
             <div class="row form-group">
               <div class="col-12 col-lg-12 ls-prefix-group">
                 <label for="email"
-                  ><b>Email
+                  ><b
+                    >Email
                     <i
                       class="fa fa-envelope"
                       style="color: black;"
@@ -71,22 +77,7 @@
                   title="Digite sua senha cadastrada no sistema para realizar o login no site da Golden Bear Company."
                   required="True"
                 />
-                <p>
-                  <p style="color: black;" id="passwordHelpBlock" class="form-text text-dark">
-                    <strong style="color: black;">Atenção:</strong>  Senha deve conter de oito (8) a trinta (30) caracteres pelo menos um número, uma letra maiúscula, 
-                    uma minúscula e não deve conter espaços ou emoji.
-                  </p>
-                </p>
-              </div>
-
-              <div class="col-12 col-lg-6 input-group col-md-4 f-left form-group">
-                <div class="checkbox">	    
-                  <label>	      
-                    <input type="checkbox" data-error="Você deve marcar este campo!" 
-                    required> Marque este item, para validar o formulário de login.	    
-                  </label>
-                  <div class="help-block with-errors"></div>	  
-                </div>
+                <p></p>
               </div>
 
               <div class="col-12 text-center">
@@ -97,14 +88,7 @@
                   Acessar sua conta
                 </button>
 
-                <button
-                  class="btn btn-outline-dark border border-dark btn-block"
-                  type="button"
-                  onclick="exibirCriarConta()"
-                >
-                  Ainda não tem conta? Clique aqui
-                </button>
-                
+                <!--
                 <button
                   class="btn btn-outline-dark border border-dark btn-block"
                   type="button"
@@ -112,9 +96,17 @@
                 >
                   Recuperar senha
                 </button>
+                -->
               </div>
             </div>
           </form>
+          <button
+            class="btn btn-outline-dark border border-dark btn-block"
+            type="button"
+            onclick="exibirCriarConta()"
+          >
+            Ainda não tem conta? Clique aqui
+          </button>
         </div>
       </div>
     </div>

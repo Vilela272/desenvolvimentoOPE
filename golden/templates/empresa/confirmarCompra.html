@@ -56,13 +56,13 @@
                     <tbody>
                       {% for itemPedido in itens %}
                       <tr>
-                        <th scope="row">#{{ itemPedido.pedido.id }}</th>
-                        <td>{{ itemPedido.produto.nome_produto }}</td>
-                        <td>{{ itemPedido.produto.descricao }}</td>
-                        <td class="qtd_item">{{ itemPedido.quantidade }}</td>
-                        <td>{{ itemPedido.produto.preco }}</td>
-                        <td class="item-total">{{ itemPedido.produto.preco }} + ",00"</td>
-                        <td>
+                        <th scope="row" class="align-middle">#{{ itemPedido.pedido.id }}</th>
+                        <td class="align-middle">{{ itemPedido.produto.nome_produto }}</td>
+                        <td class="align-middle">{{ itemPedido.produto.descricao }}</td>
+                        <td class="qtd_item align-middle">{{ itemPedido.quantidade }}</td>
+                        <td class="align-middle">{{ itemPedido.produto.preco }}</td>
+                        <td class="item-total align-middle">{{ itemPedido.produto.preco }} + ",00"</td>
+                        <td class="align-middle">
                           <form method="POST" action="{% url 'removerProdutoConfirmarCompra' %}">
                             {% csrf_token %}
                             <button
@@ -124,7 +124,7 @@
                       
                     <!-- Informações de frete (opcionais) -->  
                     <input name="shippingType" type="hidden" value="1">  
-                    <input name="shippingAddressPostalCode" type="hidden" value="04115-100">
+                    <input name="shippingAddressPostalCode" type="hidden" value="05674-050">
                     <input name="shippingAddressStreet" type="hidden" value="">  
                     <input name="shippingAddressNumber" type="hidden" value="666">  
                     <input name="shippingAddressComplement" type="hidden" value="">  
@@ -149,23 +149,6 @@
                   </form> <br>
                    
                 </div>
-
-                <!--
-                <div class="col-12 text-center">
-                    <button
-                      class="btn btn-outline-dark btn-block border border-dark"
-                      type="submit"
-                      onclick="exibirTelaBoletoBradesco()">pagamento no próprio sistema
-                    </button>
-
-
-                    <button
-                      class="btn btn-outline-dark btn-block border border-dark"
-                      type="submit"
-                      onclick="exibirTelaPagamentoCartao()">pagamento com cartão de crédito ou Paypal
-                    </button>
-                </div>
-                -->
 
             {% else %}
               <div class="alert alert-danger text-dark border border-dark" role="alert">
@@ -208,15 +191,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-
-function exibirTelaBoletoBradesco() {
-  location.href = "{% url 'boletoBradesco' %}";
-}
-
-function exibirTelaPagamentoCartao() {
-  location.href = "{% url 'pagamentoCartao' %}";
-}
-
 
 var atualizaCarrinho = function(){
     var carrinhos = $('.carrinho');

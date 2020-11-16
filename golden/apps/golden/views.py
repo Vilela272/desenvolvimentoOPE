@@ -8,17 +8,20 @@ from usuarios.forms import User, UserForm, UserProfile, UserProfileForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
+
+
 def produto(request, slug, categoria_id):
     """
     Função produto, seleciona o produto por id, para mostrar no HTML
     OBS: Precisa de ajustes para mostrar o produto por determinada categoria
     """
-    produtos = Produto.objects.filter(categoria__produto=categoria_id, publicada=True).order_by('-data_produto')
+    produtos = Produto.objects.filter(
+        categoria__produto=categoria_id, publicada=True).order_by('-data_produto')
 
     paginator = Paginator(produtos, 6)
     page = request.GET.get('page')
     produtos_por_pagina = paginator.get_page(page)
-    
+
     produto_a_exibir = {
         'produtos': produtos_por_pagina
     }
@@ -29,21 +32,62 @@ def busca(request):
     """
     Função de busca, que realiza busca de determinado produto, que o usuário digitou
     """
-    buscas = Produto.objects.order_by('-data_produto').filter(publicada=True)
-    
+    buscas = Produto.objects.order_by(
+        '-data_produto').filter(publicada=True)
+
     if 'buscar' in request.GET:
         nome_a_buscar = request.GET['buscar']
         buscas = buscas.filter(nome_produto__icontains=nome_a_buscar)
-    
+
     paginator = Paginator(buscas, 6)
     page = request.GET.get('page')
     busca_por_pagina = paginator.get_page(page)
 
     dados = {
-        'buscas' : busca_por_pagina
+        'buscas': busca_por_pagina
     }
 
     return render(request, 'produtos/buscar.html', dados)
+
+    if request.user.is_authenticated:
+
+        try:
+            pedido = Pedido.objects.get(
+                usuario=request.user, status="Carrinho")
+        except Pedido.DoesNotExist:
+            pedido = Pedido(usuario=request.user, status="Carrinho")
+
+        if request.method == 'POST':
+            id_produto = request.POST['produto']
+            produto = Produto.objects.get(id=id_produto)
+            quantidade = request.POST['quantidade']
+
+            if quantidade == '':
+                quantidade = 1
+            elif quantidade == '0':
+                quantidade = 1
+            elif quantidade < str(0):
+                quantidade = 1
+
+            try:
+                item = PedidoProduto.objects.get(
+                    pedido=pedido, produto=produto)
+            except PedidoProduto.DoesNotExist:
+                item = PedidoProduto(
+                    pedido=pedido, produto=produto, quantidade=0)
+
+            item.quantidade = int(quantidade)
+            pedido.save()
+            item.save()
+
+        dados_pedido = {
+            'pedido': pedido,
+            'itens': PedidoProduto.objects.filter(pedido=pedido)
+        }
+
+        return render(request, 'produtos/buscar.html', dados_pedido)
+    return redirect('login')
+
 
 
 def sobre(request):
@@ -54,56 +98,16 @@ def sobre(request):
     return render(request, 'empresa/sobre.html')
 
 
-def boleto_bradesco(request):
+def email(request):
     """
-    Função que sobre.
-    Quando o usuário clicar no botão Sobre nós, rediciona para a página sobre.html
+    Função email.
+    Quando o usuário clicar no botão de email, rediciona para a página sobre.html
     """
     if request.user.is_authenticated:
-        try:
-            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
-        except Pedido.DoesNotExist:
-            pedido = Pedido(usuario=request.user, status="Carrinho")
-        
-        if request.method == 'POST':
-            id_produto = request.POST['produto']
-            produto = Produto.objects.get(id=id_produto)
-            quantidade = request.POST['quantidade']
-
-            if quantidade == '':
-                quantidade = 1
-            elif  quantidade == '0' :
-                quantidade = 1
-            elif quantidade < str(0):
-                quantidade = 1
-
-            try:
-                item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
-            except PedidoProduto.DoesNotExist:
-                item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
- 
-            item.quantidade = int(quantidade)
-            pedido.save()
-            item.save()
-        
-        dados = {
-            'pedido': pedido,
-            'itens': PedidoProduto.objects.filter(pedido=pedido)
-        }
-        
-        return render(request, 'boleto/boletoBradesco.html', dados)
-    
+        return render(request, 'usuarios/email.html')
     messages.error(
-                request, 'Desculpe! Mas você só pode inserir um produto ao carrinho se estiver logado.')
+        request, 'Desculpe! Mas você só enviar um email com sugestão ou reclamação se estiver logado.')
     return redirect('login')
-
-
-def pagamento_cartao(request):
-    """
-    Função que sobre.
-    Quando o usuário clicar no botão Sobre nós, rediciona para a página sobre.html
-    """
-    return render(request, 'boleto/pagamentoBoleto.html')
 
 
 def carrinho(request):
@@ -116,42 +120,40 @@ def carrinho(request):
     if request.user.is_authenticated:
 
         try:
-            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+            pedido = Pedido.objects.get(
+                usuario=request.user, status="Carrinho")
         except Pedido.DoesNotExist:
             pedido = Pedido(usuario=request.user, status="Carrinho")
-        
+
         if request.method == 'POST':
             id_produto = request.POST['produto']
             produto = Produto.objects.get(id=id_produto)
             quantidade = request.POST['quantidade']
 
-            if quantidade == '':
-                quantidade = 1
-            elif  quantidade == '0' :
-                quantidade = 1
-            elif quantidade < str(0):
+            if quantidade == '' or quantidade == '0' or quantidade < str(0):
                 quantidade = 1
 
             try:
-                item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
+                item = PedidoProduto.objects.get(
+                    pedido=pedido, produto=produto)
             except PedidoProduto.DoesNotExist:
-                item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
- 
+                item = PedidoProduto(
+                    pedido=pedido, produto=produto, quantidade=0)
+
             item.quantidade = int(quantidade)
             pedido.save()
             item.save()
-        
+
         dados = {
             'pedido': pedido,
             'itens': PedidoProduto.objects.filter(pedido=pedido)
         }
-        
-        return render(request, 'empresa/carrinho.html', dados)
-    
-    messages.error(
-                request, 'Desculpe! Mas você só pode inserir um produto ao carrinho se estiver logado.')
-    return redirect('login')
 
+        return render(request, 'empresa/carrinho.html', dados)
+
+    messages.error(
+        request, 'Desculpe! Mas você só pode inserir um produto ao carrinho se estiver logado.')
+    return redirect('login')
 
 
 def remover_produto(request):
@@ -171,7 +173,8 @@ def remover_produto(request):
                 pass
 
         try:
-            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+            pedido = Pedido.objects.get(
+                usuario=request.user, status="Carrinho")
         except Pedido.DoesNotExist:
             return render(request, 'empresa/carrinho.html')
 
@@ -181,9 +184,9 @@ def remover_produto(request):
         }
 
         return render(request, 'empresa/carrinho.html', dados)
-    
+
     messages.error(
-                request, 'Desculpe! Mas não foi possível remover o produto.')
+        request, 'Desculpe! Mas não foi possível remover o produto.')
     return redirect('login')
 
 
@@ -193,23 +196,13 @@ def confirmar_compra(request):
     função criada para confirmar a compra e redirecionar os produtos para tela de confirmação
     """
     if request.user.is_authenticated:
-        user = User.objects.get(pk=request.user.pk)
-        user_form = UserForm(instance=user)
-       
+
         try:
-            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+            pedido = Pedido.objects.get(
+                usuario=request.user, status="Carrinho")
         except Pedido.DoesNotExist:
             pedido = Pedido(usuario=request.user, status="Carrinho")
-        
-        try:
-            user_profile = UserProfile.objects.get(user=user)
-        except:
-            user_profile = UserProfile()
-            user_profile.user = user
-            user_profile.save()
-        
-        profile_form = UserProfileForm(instance=user_profile)
-        
+
         if request.method == 'POST':
             id_produto = request.POST['produto']
             produto = Produto.objects.get(id=id_produto)
@@ -219,45 +212,25 @@ def confirmar_compra(request):
                 quantidade = 1
 
             try:
-                item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
+                item = PedidoProduto.objects.get(
+                    pedido=pedido, produto=produto)
             except PedidoProduto.DoesNotExist:
-                item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0)
- 
+                item = PedidoProduto(
+                    pedido=pedido, produto=produto, quantidade=0)
+
             item.quantidade = int(quantidade)
             pedido.save()
             item.save()
 
-            user_form = UserForm(request.POST)
-            profile_form = UserProfileForm(request.POST)
-            if user_form.is_valid() and profile_form.is_valid():
-                user.first_name = user_form.cleaned_data['first_name']
-                user.last_name = user_form.cleaned_data['last_name']
-                user.save()
-
-                user_profile.cpf = profile_form.cleaned_data['cpf']
-                user_profile.address = profile_form.cleaned_data['address']
-                user_profile.number = profile_form.cleaned_data['number']
-                user_profile.address2 = profile_form.cleaned_data['address2']
-                user_profile.city = profile_form.cleaned_data['city']
-                user_profile.district = profile_form.cleaned_data['district']
-                user_profile.state = profile_form.cleaned_data['state']
-                user_profile.country = profile_form.cleaned_data['country']
-                user_profile.zipcode = profile_form.cleaned_data['zipcode']
-                user_profile.phone = profile_form.cleaned_data['phone']
-                user_profile.save()
-        
         dados = {
             'pedido': pedido,
-            'itens': PedidoProduto.objects.filter(pedido=pedido),
-            'user_form': user_form,
-            'profile_form': profile_form,
-            'user': user
+            'itens': PedidoProduto.objects.filter(pedido=pedido)
         }
 
         return render(request, 'empresa/confirmarCompra.html', dados)
-    
+
     messages.error(
-                request, 'Desculpe! Mas não foi confirmar sua compra.')
+        request, 'Desculpe! Mas não foi possível confirmar sua compra.')
     return render(request, 'usuarios/login.html')
 
 
@@ -278,7 +251,8 @@ def remover_produto_confirmacao(request):
                 pass
 
         try:
-            pedido = Pedido.objects.get(usuario=request.user, status="Carrinho")
+            pedido = Pedido.objects.get(
+                usuario=request.user, status="Carrinho")
         except Pedido.DoesNotExist:
             return render(request, 'empresa/carrinho.html')
 
@@ -288,9 +262,9 @@ def remover_produto_confirmacao(request):
         }
 
         return render(request, 'empresa/confirmarCompra.html', dados)
-    
+
     messages.error(
-                request, 'Desculpe! Mas não foi possível remover o produto.')
+        request, 'Desculpe! Mas não foi possível remover o produto.')
     return redirect('login')
 
 
@@ -328,4 +302,3 @@ def politica_de_reembolso(request):
     redireciona para a página de politica de reembolso.
     """
     return render(request, 'empresa/politicaDeReembolso.html')
-

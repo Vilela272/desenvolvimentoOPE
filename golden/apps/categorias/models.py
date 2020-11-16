@@ -13,7 +13,7 @@ class Categoria(models.Model):
     ))
     slug = models.SlugField(unique=True)
     foto_categoria = models.ImageField(upload_to='fotos/categorias/%d/%m/%Y/', blank=True)
-    publicada = models.BooleanField(default=False)
+    publicada = models.BooleanField(default=True)
 
     class Meta:
         verbose_name_plural = 'Categorias'
