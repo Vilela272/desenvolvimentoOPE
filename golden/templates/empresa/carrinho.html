@@ -81,17 +81,7 @@
                       <th scope="row" class="align-middle">#{{ itemPedido.produto.id }}</th>
                       <td class="align-middle">{{ itemPedido.produto.nome_produto }}</td>
                       <td class="align-middle">{{ itemPedido.produto.descricao }}</td>
-                      <td>
-                        <input
-                          class="form-control border border-secondary rounded p-1 mb-1 bg-transparent text-white"
-                          name="quantidade"
-                          id="quantidade"
-                          type="number"
-                          title="Quantidade de unidades"
-                          placeholder="Selecione a quantidade desejada"
-                          value="{{ itemPedido.quantidade }}"
-                        />
-                        </td>
+                      <td class="align-middle">{{ itemPedido.quantidade }}</td>
                       <td class="align-middle">{{ itemPedido.produto.preco }}</td>
                       <td class="align-middle">
                         <form method="POST" action="{% url 'removerProduto' %}">

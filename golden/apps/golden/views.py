@@ -129,18 +129,18 @@ def carrinho(request):
             id_produto = request.POST['produto']
             produto = Produto.objects.get(id=id_produto)
             quantidade = request.POST['quantidade']
+            usuario = request.user
 
             if quantidade == '' or quantidade == '0' or quantidade < str(0):
                 quantidade = 1
 
             try:
-                item = PedidoProduto.objects.get(
-                    pedido=pedido, produto=produto)
+                item = PedidoProduto.objects.get(pedido=pedido, produto=produto)
             except PedidoProduto.DoesNotExist:
-                item = PedidoProduto(
-                    pedido=pedido, produto=produto, quantidade=0)
+                item = PedidoProduto(pedido=pedido, produto=produto, quantidade=0, usuario=usuario)
 
             item.quantidade = int(quantidade)
+            item.usuario = usuario
             pedido.save()
             item.save()
 
@@ -207,6 +207,7 @@ def confirmar_compra(request):
             id_produto = request.POST['produto']
             produto = Produto.objects.get(id=id_produto)
             quantidade = request.POST['quantidade']
+            tamanho = request.POST['tamanho']
 
             if quantidade == '':
                 quantidade = 1
@@ -216,9 +217,10 @@ def confirmar_compra(request):
                     pedido=pedido, produto=produto)
             except PedidoProduto.DoesNotExist:
                 item = PedidoProduto(
-                    pedido=pedido, produto=produto, quantidade=0)
+                    pedido=pedido, produto=produto, quantidade=0, tamanho=tamanho)
 
             item.quantidade = int(quantidade)
+            item.tamanho = tamanho
             pedido.save()
             item.save()
 

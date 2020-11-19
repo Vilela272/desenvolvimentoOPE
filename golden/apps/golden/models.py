@@ -12,6 +12,7 @@ class Produto(models.Model):
     design_produto = models.TextField(max_length=255)
     data_produto = models.DateTimeField(default=datetime.now, blank=True)
     quantidade = models.IntegerField(default=1)
+    tamanho = models.CharField(max_length=30)
     preco = models.DecimalField(max_digits=8, decimal_places=2)
     foto_produto = models.ImageField(upload_to='fotos/%d/%m/%Y/', blank=True)
     publicada = models.BooleanField(default=False)
@@ -45,6 +46,7 @@ class PedidoProduto(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
     quantidade = models.IntegerField()
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'Pedido produtos'
