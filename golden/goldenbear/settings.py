@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'postgre',
         'USER': 'postgre',
         'PASSWORD': '2107guI*',
-        'HOST': 'companygoldenbear.cxlfqihruuui.us-east-1.rds.amazonaws.com',
+        'HOST': 'goldenbearcompany.ctq9h3jeqx9x.us-east-2.rds.amazonaws.com',
         'PORT': '5432'
     }
 }
