@@ -81,8 +81,8 @@ WSGI_APPLICATION = 'goldenbear.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgre',
-        'USER': 'postgre',
+        'NAME': 'postgres',
+        'USER': 'postgres',
         'PASSWORD': '2107guI*',
         'HOST': 'goldenbearcompany.ctq9h3jeqx9x.us-east-2.rds.amazonaws.com',
         'PORT': '5432'
