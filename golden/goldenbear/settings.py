@@ -27,7 +27,7 @@ SECRET_KEY = ')wcksy(_8kpz9b(n6^-=4tmiac22od!l$opt_+nb6f^=ruryp$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['goldenbearcompany.elasticbeanstalk.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': '2107guI*',
-        'HOST': 'goldenbearcompany.ctq9h3jeqx9x.us-east-2.rds.amazonaws.com',
+        'HOST': "opegoldenbear.cte1tol4qpe5.us-east-1.rds.amazonaws.com",
         'PORT': '5432'
     }
 }

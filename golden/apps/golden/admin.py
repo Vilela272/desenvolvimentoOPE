@@ -6,7 +6,7 @@ from categorias.models import Categoria
 
 class ListandoProdutos(admin.ModelAdmin):
     prepopulated_fields = {"slug": ('nome_produto', )}
-    list_display = ('id', 'nome_produto', 'data_produto','publicada', 'preco', 'categoria', 'categoria_id')
+    list_display = ('id', 'nome_produto', 'data_produto','publicada', 'preco', 'categoria',)
     list_display_links = ('id',  'nome_produto', )
     search_fields = ('nome_produto', )
     list_filter = ('categoria', 'publicada', )
